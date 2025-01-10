@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkbox JSON Generator</title>
+  <style>body{font-family:Arial,sans-serif;margin:20px}header{text-align:center}fieldset{border:2px solid #ccc;border-radius:5px;padding:15px;margin-bottom:20px}.input-group{margin-bottom:15px}label{font-weight:700}input[type=checkbox]{margin-right:10px}button{padding:10px 15px;font-size:14px;margin-right:10px;cursor:pointer;border:none;border-radius:5px;background-color:#007BFF;color:#fff}textarea{width:100%;height:200px;font-family:monospace;font-size:14px;margin-top:20px}</style>
+</head>
+
+<body>
+  <header>
+    <h1>Checkbox JSON Generator</h1>
+    <p>Select frames and generate the JSON.</p>
+  </header>
+
+  <form id="jsonForm">
+    <fieldset>
+      <legend>Available Frames</legend>
+      <div class="input-group">
+        <label><input type="checkbox" id="default_frame" name="frames" value="default_frame"> Default Frame</label>
+      </div>
+      <div class="input-group">
+        <label><input type="checkbox" id="summer_frame" name="frames" value="summer_frame"> Summer Frame</label>
+      </div>
+      <div class="input-group">
+        <label><input type="checkbox" id="birthday2024_frame" name="frames" value="birthday2024_frame"> Birthday 2024 Frame</label>
+      </div>
+      <div class="input-group">
+        <label><input type="checkbox" id="hollywood_frame" name="frames" value="hollywood_frame"> Hollywood Frame</label>
+      </div>
+    </fieldset>
+
+    <button type="button" onclick="generateJSON()">Generate JSON</button>
+  </form>
+
+  <textarea id="jsonOutput" readonly placeholder="Generated JSON will appear here..."></textarea>
+
+  <script>
+    function generateJSON() {
+      const selectedFrames = {};
+      const ownedFrames = {};
+
+      document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+        if (checkbox.checked) {
+          const frameId = checkbox.value;
+          selectedFrames[frameId] = {};
+          ownedFrames[frameId] = { id: frameId, isSeen: true };
+        }
+      });
+
+      const json = {
+        version: 1,
+        data: JSON.stringify({
+          selected: selectedFrames,
+          owned: ownedFrames
+        })
+      };
+
+      document.getElementById('jsonOutput').value = JSON.stringify(json, null, 2);
+    }
+  </script>
+</body>
+
+</html>
