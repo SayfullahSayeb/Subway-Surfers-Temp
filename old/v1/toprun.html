@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Current Score</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin: 10px 0;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Update Current Score</h1>
+        <label for="scoreInput">Enter value to set as currentScore:</label>
+        <input type="number" id="scoreInput" placeholder="Enter number">
+        <div class="actions">
+            <button onclick="generateJSON()">Generate</button>
+            <button onclick="copyJSON()">Copy</button>
+            <button onclick="downloadJSON()">Download</button>
+        </div>
+        <h2>Generated JSON:</h2>
+        <pre id="output"></pre>
+    </div>
+
+    <script>
+        // Original JSON object
+        let jsonData = {
+            "version": 1,
+            "data": "{\"lastSaved\":\"2022-05-18T07:21:43.988778Z\",\"patchVersion\":0,\"hasUnclaimedReward\":false,\"currentCountry\":\"us\",\"nextCountry\":null,\"currentScore\":0,\"unsubmittedScore\":{\"score\":0,\"scoreDate\":\"0001-01-01T08:00:00Z\",\"metadata\":null},\"previousScore\":0,\"previousBracket\":null,\"startDate\":\"2022-05-16T09:00:00Z\",\"lastClaimedTournamentStart\":\"0001-01-01T08:00:00Z\",\"friendRuns\":{},\"currentTopScoreMetadata\":[{\"key\":\"multiplier\",\"value\":\"6036\"},{\"key\":\"character\",\"value\":\"zombiejake\"},{\"key\":\"board\",\"value\":\"sweetheart\"}]}"
+        };
+
+        // Function to update and display JSON
+        function generateJSON() {
+            const input = document.getElementById('scoreInput');
+            const newScore = Number(input.value);
+
+            if (!isNaN(newScore)) {
+                // Parse data inside the "data" key
+                let data = JSON.parse(jsonData.data);
+                data.currentScore = newScore; // Set the new score
+
+                // Update the JSON data as a string
+                jsonData.data = JSON.stringify(data);
+
+                // Display the updated JSON
+                const outputElement = document.getElementById('output');
+                outputElement.textContent = JSON.stringify(jsonData);
+                outputElement.style.display = 'block';
+            } else {
+                alert('Please enter a valid number');
+            }
+        }
+
+        // Function to copy JSON to clipboard
+        function copyJSON() {
+            const outputElement = document.getElementById('output');
+            if (outputElement.style.display === 'block') {
+                navigator.clipboard.writeText(outputElement.textContent).then(() => {
+                    alert('JSON copied to clipboard!');
+                }).catch(err => {
+                    alert('Failed to copy JSON: ' + err);
+                });
+            } else {
+                alert('Generate JSON first!');
+            }
+        }
+
+        // Function to download JSON as a file
+        function downloadJSON() {
+            const outputElement = document.getElementById('output');
+            if (outputElement.style.display === 'block') {
+                const blob = new Blob([outputElement.textContent], { type: 'application/json' });
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'top_run.json';
+                link.click();
+            } else {
+                alert('Generate JSON first!');
+            }
+        }
+    </script>
+</body>
+</html>

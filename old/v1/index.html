@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Subway Hack</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="content">
+
+      <h1>Subway Hack</h1>
+      <p>Insert values that you want in Subway Surfers 😃👍</p>
+      <p><b>Using large numbers such as 10M|100M|1B|etc may cause bugs in your game</b></p>
+      <div id="forms">
+        <div id="t1">
+          <div class="campo-wrapper">
+            <img src="../img\coins.jpg" alt="Money Icon">
+            <input placeholder="Coins" class="campo" type="number" name="moedas" id="moedas">
+          </div>
+
+          <div class="campo-wrapper">
+            <img src="../img/keys.webp" alt="Keys Icon">
+            <input placeholder="Keys" class="campo" type="number" name="chaves" id="chaves">
+          </div>
+
+          <div class="campo-wrapper">
+            <img src="../img/hoverboard.png" alt="Snowboards Icon">
+            <input placeholder="Hover Board" class="campo" type="number" name="snowboards" id="snowboards">
+          </div>
+
+          <div class="campo-wrapper">
+            <img src="../img/Headstart.webp" alt="Red Boost Icon">
+            <input placeholder="Headstart" class="campo" type="number" name="bVerm" id="bVerm">
+          </div>
+
+          <div class="campo-wrapper">
+            <img src="../img/scorebooster.png" alt="Blue Boost Icon">
+            <input placeholder="Score Booster" class="campo" type="number" name="bAzul" id="bAzul">
+          </div>
+        </div>
+
+        <div id="t2">
+          <div class="campo-wrapper">
+            <img src="../img/Jake.webp" alt="Jake Coins Icon">
+            <input placeholder="Jake coins" class="campo" type="number" name="jake" id="jake">
+          </div>
+
+          <div class="campo-wrapper">
+            <img src="../img/Fresh.webp" alt="Fresh Coins Icon">
+            <input placeholder="Fresh coins" class="campo" type="number" name="fresh" id="fresh">
+          </div>
+
+          <div class="campo-wrapper">
+            <img src="../img/Tricky.webp" alt="Tricky Coins Icon">
+            <input placeholder="Tricky coins" class="campo" type="number" name="tricky" id="tricky">
+          </div>
+
+          <div class="campo-wrapper">
+            <img src="../img/Spike.webp" alt="Spike Coins Icon">
+            <input placeholder="Spike coins" class="campo" type="number" name="spike" id="spike">
+          </div>
+
+          <div class="campo-wrapper">
+            <img src="../img/Yutani.webp" alt="Yutani Coins Icon">
+            <input placeholder="Yutani coins" class="campo" type="number" name="yutani" id="yutani">
+          </div>
+        </div>
+      </div>
+
+      <div class="campo-wrapper">
+        <img src="../img/EventCoin.webp" alt="Event Coin Icon">
+        <input placeholder="Event coin" class="campo" type="number" name="eventCash" id="eventCash">
+      </div>
+
+      <input type="button" value="Download" onclick="getData(1)">
+      <p>Put this file in Android/data/com.kiloo.subwaysurf/files/profile/ </p>
+      <div id="resultado"></div>
+
+      <h2>Top Run</h2> <div class="actions"> <button onclick="generateJSON()">Generate</button> <button onclick="copyJSON()">Copy</button> <button onclick="downloadJSON()">Download</button> </div> <label for="scoreInput">Enter value to set as currentScore:</label> <div class="campo-wrapper"> <img src="../img/Spike.webp" alt="Top Run Score Icon"> <input placeholder="Top Run Score" class="campo" type="number" name="spike" id="scoreInput"> </div> <h2>Generated JSON:</h2> <pre id="output"></pre> </div>
+      <p> Put this file in Android/data/com.kiloo.subwaysurf/files/profile/</p>
+
+      <footer>
+        Made with ❤️ by Sayfullah
+        <a href="https://github.com/ssayeb7/SubwayHackWEB" class="github-link" target="_blank" rel="noopener noreferrer">
+          GitHub
+        </a>
+      </footer>
+    </div>
+  </div>
+</body>
+
+</html>

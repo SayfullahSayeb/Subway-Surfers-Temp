@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Generate JSON</title>
+    <style>
+        body{font-family:Arial,sans-serif;padding:20px;line-height:1.5;background-color:#f4f4f9}
+        .container{max-width:400px;margin:0 auto;padding:20px;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);border-radius:5px}
+        label{font-size:14px;font-weight:bold}
+        input[type="number"],button{width:100%;padding:10px;margin:10px 0;font-size:14px;border:1px solid #ccc;border-radius:5px}
+        button{background-color:#28a745;color:#fff;cursor:pointer;border:none}
+        button:hover{background-color:#218838}
+        .error{color:#d9534f;margin:10px 0;font-size:14px;font-weight:bold}
+        .output{background-color:#f9f9f9;padding:10px;border:1px solid #ccc;border-radius:5px;margin:10px 0;white-space:pre-wrap}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <label for="inputValue">Enter "currentMissionSet" (Max: 30):</label>
+        <input type="number" id="inputValue" placeholder="Enter a value" min="0">
+        <button id="generateButton">Generate JSON</button>
+        <div id="error" class="error" style="display:none;">Value can't be higher than 30.</div>
+        <div id="output" class="output" style="display:none;"></div>
+    </div>
+
+    <script>
+        document.getElementById("generateButton").addEventListener("click", function () {
+            const inputValue = parseInt(document.getElementById("inputValue").value);
+            const errorElement = document.getElementById("error");
+            const outputElement = document.getElementById("output");
+
+            if (isNaN(inputValue) || inputValue > 30) {
+                errorElement.style.display = "block";
+                outputElement.style.display = "none";
+            } else {
+                errorElement.style.display = "none";
+                const jsonData = {
+                    version: 1,
+                    data: JSON.stringify({
+                        lastSaved: "0001-01-01T00:00:00Z",
+                        patchVersion: 1,
+                        currentMissionSet: inputValue,
+                        activeMissions: [
+                            { missionGoal: 100, claimedProgress: 0, missionProgress: 0, missionCompleted: false, Target: 15, Condition: 0, CompletionType: 1, ClaimPlacementType: 0, Index: 0 },
+                            { missionGoal: 500, claimedProgress: 500, missionProgress: 500, missionCompleted: true, Target: 8, Condition: 2, CompletionType: 2, ClaimPlacementType: 0, Index: 1 },
+                            { missionGoal: 1, claimedProgress: 1, missionProgress: 1, missionCompleted: true, Target: 10, Condition: 0, CompletionType: 2, ClaimPlacementType: 0, Index: 2 }
+                        ],
+                        missionSetLastAdsCheckUpdateTime: "0001-01-01T00:00:00Z",
+                        currentSkipWithAdsMission: 0,
+                        hasVisitedMissionsScreen: true,
+                        scoreMultiplierLastVisit: 1
+                    })
+                };
+                outputElement.textContent = JSON.stringify(jsonData, null, 2);
+                outputElement.style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portrait Selector</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .controls {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .portrait-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 5px;
+      width: 150px;
+      background-color: #f9f9f9;
+    }
+
+    .portrait-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #007BFF;
+      color: #fff;
+    }
+
+    textarea {
+      width: 100%;
+      height: 200px;
+      font-family: monospace;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Portrait Selector</h1>
+    <p>Toggle between "Check All" and "Uncheck All" to select portraits and generate the JSON output.</p>
+  </header>
+
+  <section>
+    <div class="controls">
+      <button id="toggleButton" onclick="toggleSelection()">Check All</button>
+      <button onclick="generateJSON()">Generate JSON</button>
+    </div>
+
+    <div id="portraitContainer" class="container"></div>
+  </section>
+
+  <textarea id="jsonOutput" readonly placeholder="Generated JSON will appear here..."></textarea>
+
+  <script>
+    // Placeholder for manual entry
+    const portraitData = [
+          {
+      "name": "Jake",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/a/a9/Jake_portrait.png"
+    },
+    {
+      "name": "Tricky",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/4/49/Tricky_portrait.png"
+    },
+    {
+      "name": "Fresh",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/e/e4/Fresh_portrait.png"
+    },
+    {
+      "name": "Spike",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/6/6e/Spike_portrait.png"
+    },
+    {
+      "name": "Yutani",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/4/45/Yutani_portrait.png"
+    },
+    {
+      "name": "Ella",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/4/4b/Ella_portrait.png"
+    },
+    {
+      "name": "King",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/e/e4/King_portrait.png"
+    },
+    {
+      "name": "Tagbot",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/d/d5/Tagbot_portrait.png"
+    },
+    {
+      "name": "Dino",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/f/f6/Dino_portrait.png"
+    },
+    {
+      "name": "Boombot",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/a/a2/Boombot_portrait.png"
+    },
+    {
+      "name": "Hammy-Bee",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/0/05/HammyBeeProfileBetterQuality.png"
+    },
+    {
+      "name": "Pixel Jake",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/8/83/JakePixelProfile.png"
+    },
+    {
+      "name": "Ballerina Tricky",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/c/cb/TrickyBallerinaProfile.png"
+    },
+    {
+      "name": "Lily",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/b/b1/Lily_default_portrait.png"
+    },
+    {
+      "name": "Alexandre's Stan",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/6/63/Alexandre_stanoutfit_portrait.png"
+    },
+    {
+      "name": "Ventura",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/7/70/Ventura_default_portrait.png"
+    },
+    {
+      "name": "Vivienne's Hollywood Glam",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/5/5e/Vivienne_hollywoodglamoutfit_portrait.png"
+    },
+    {
+      "name": "Hélène graffiti",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/8/8c/Helene_illustration_portrait.png"
+    },
+    {
+      "name": "Spraycan graffiti",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/b/b2/Spraycan_graffiti_portrait.png"
+    },
+    {
+      "name": "Pins graffiti",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/e/e1/Pins_illustration_portrait.png"
+    },
+    {
+      "name": "Boombox graffiti",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/b/b6/Boombox_graffiti_portrait.png"
+    },
+    {
+      "name": "Audrey graffiti",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/0/0c/Audrey_illustration_portrait.png"
+    },
+    {
+      "name": "Burger graffiti",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/8/86/Veggieburger_graffiti_portrait.png"
+    },
+    {
+      "name": "Kedi graffiti",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/c/c9/Kedi_illustration_portrait.png"
+    },
+    {
+      "name": "Ruhi graffiti",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/4/46/Ruhi_illustration_portrait.png"
+    },
+    {
+      "name": "Thursday graffiti",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/d/de/Thursday_illustration_portrait.png"
+    },
+    {
+      "name": "Frank graffiti",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/e/eb/Frank_illustration_portrait.png"
+    },
+    {
+      "name": "Bob The Blob head graffiti",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/4/41/BobTheBlobHead_illustration_portrait.png"
+    },
+    {
+      "name": "Bob The Blob graffiti",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/1/10/BobTheBlob_illustration_portrait.png"
+    },
+    {
+      "name": "Bob The Blob's Slime",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/d/d7/BobTheBlob_slimeoutfit_illustration_portrait.png"
+    },
+    {
+      "name": "Bob The Blob's Jingle",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/5/54/BobTheBlob_jingleoutfit_illustration_portrait.png"
+    },
+    {
+      "name": "Default",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/1/14/Me_profile_image.png"
+    },
+    {
+      "name": "Ginger’s graffiti",
+      "img_url": "https://static.wikia.nocookie.net/subwaysurf/images/7/7d/Ginger_illustration_portrait.png"
+    }
+    ];
+
+    // Load portraits into the container
+    function populatePortraits(data) {
+      const container = document.getElementById("portraitContainer");
+      container.innerHTML = ""; // Clear container
+
+      data.forEach((item, index) => {
+        const card = document.createElement("div");
+        card.classList.add("portrait-card");
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.id = `portrait-${index}`;
+        checkbox.value = item.name;
+        checkbox.dataset.imgUrl = item.img_url;
+
+        const label = document.createElement("label");
+        label.setAttribute("for", `portrait-${index}`);
+        label.textContent = item.name;
+
+        const img = document.createElement("img");
+        img.src = item.img_url;
+        img.alt = item.name;
+
+        card.appendChild(checkbox);
+        card.appendChild(img);
+        card.appendChild(label);
+
+        container.appendChild(card);
+      });
+    }
+
+    // Toggle between Check All and Uncheck All
+    function toggleSelection() {
+      const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+      const allChecked = Array.from(checkboxes).every((checkbox) => checkbox.checked);
+
+      checkboxes.forEach((checkbox) => (checkbox.checked = !allChecked));
+
+      document.getElementById("toggleButton").textContent = allChecked ? "Check All" : "Uncheck All";
+    }
+
+    // Generate JSON output
+    function generateJSON() {
+      const selected = {};
+      const owned = {};
+
+      document.querySelectorAll('input[type="checkbox"]:checked').forEach((checkbox) => {
+        const id = checkbox.value.replace(/\s+/g, "_").toLowerCase() + "_portrait";
+        selected[id] = {};
+        owned[id] = {
+          id,
+          isSeen: true,
+        };
+      });
+
+      const json = {
+        version: 1,
+        data: JSON.stringify({
+          selected,
+          owned,
+        }),
+      };
+
+      document.getElementById("jsonOutput").value = JSON.stringify(json, null, 2);
+    }
+
+    // Populate portraits on page load
+    window.onload = () => populatePortraits(portraitData);
+  </script>
+</body>
+
+</html>
