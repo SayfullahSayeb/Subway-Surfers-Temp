@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUBWAY SURF</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 class="title">SUBWAY SURF</h1>
+    <p class="subtitle">Run, dodge, and collect in this endless adventure!</p>
+    <div class="tabs">
+        <div class="tab" data-file="home.html">Home</div>
+        <div class="tab" data-file="wallets.html">Wallet</div>
+        <div class="tab" data-file="characters.html">Characters</div>
+        <div class="tab" data-file="hoverboards.html">Hoverboards</div>
+        <div class="tab" data-file="portraits.html">Portraits</div>
+        <div class="tab" data-file="frames.html">Frames</div>
+        <div class="tab" data-file="multiplier.html">Multiplier</div>
+        <div class="tab" data-file="toprun.html">Top Run</div>
+        <div class="tab" data-file="badges.html">Badges</div>
+        <div class="tab" data-file="AIO.html">AIO</div>
+    </div>
+    <div class="content">
+        <!-- Content will be loaded here -->
+    </div>
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const tabs = document.querySelectorAll('.tab');
+    const contentDiv = document.querySelector('.content');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            // Remove active class from all tabs
+            tabs.forEach(t => t.classList.remove('active'));
+
+            // Add active class to the clicked tab
+            tab.classList.add('active');
+
+            // Fetch and display the content for the clicked tab
+            const file = tab.getAttribute('data-file');
+            fetch(file)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    contentDiv.innerHTML = data;
+
+                    // Execute any inline scripts in the loaded content
+                    const scripts = contentDiv.querySelectorAll('script');
+                    scripts.forEach(script => {
+                        const newScript = document.createElement('script');
+                        newScript.textContent = script.textContent; // Copy inline script content
+                        document.body.appendChild(newScript); // Append to the document to execute
+                        document.body.removeChild(newScript); // Cleanup after execution
+                    });
+                })
+                .catch(error => {
+                    contentDiv.innerHTML = `<p>Error loading content: ${error.message}</p>`;
+                });
+        });
+    });
+
+    // Load the first tab's content by default
+    tabs[0].click();
+});
+
+    </script>
+</body>
+</html>

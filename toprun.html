@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>Single Input JSON Generator</h1>
+    <p>Enter the current score and generate the JSON.</p>
+  </header>
+
+  <form id="jsonForm">
+    <fieldset>
+      <div class="input-group">
+        <label for="currentScore">Current Score:</label>
+        <input id="currentScore" name="currentScore" type="number" min="1" required>
+      </div>
+    </fieldset>
+
+    <button type="button" onclick="generateJSON()">Generate JSON</button>
+  </form>
+
+  <textarea id="jsonOutput" readonly placeholder="Generated JSON will appear here..."></textarea>
+
+  <script>
+    function generateJSON() {
+      const currentScore = parseInt(document.getElementById('currentScore').value) || 0;
+
+      const json = {
+        version: 1,
+        data: JSON.stringify({
+          lastSaved: "",
+          patchVersion: 0,
+          hasUnclaimedReward: false,
+          currentCountry: "",
+          nextCountry: null,
+          currentScore: currentScore,
+          unsubmittedScore: {
+            score: currentScore,
+            scoreDate: "0001-01-01T00:00:00Z",
+            metadata: null
+          },
+          previousScore: 0,
+          previousBracket: null,
+          startDate: "0001-01-01T00:00:00Z",
+          lastClaimedTournamentStart: "0001-01-01T00:00:00Z",
+          friendRuns: {},
+          currentTopScoreMetadata: [
+            { key: "multiplier", value: "1" },
+            { key: "character", value: "jake" },
+            { key: "board", value: "default" }
+          ]
+        })
+      };
+
+      document.getElementById('jsonOutput').value = JSON.stringify(json, null, 2);
+    }
+  </script>
+</body>
+
+</html>

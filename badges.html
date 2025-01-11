@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <h1>Player Profile JSON Generator</h1>
+    <p>Enter values for each field and generate the JSON.</p>
+  </header>
+
+  <form id="profileForm">
+    <fieldset>
+      <legend>Game Data</legend>
+
+      <div class="input-group">
+        <label for="highScore">High Score:</label>
+        <input id="highScore" name="highScore" type="number" min="1" max="2147483647" required>
+      </div>
+
+      <div class="input-group">
+        <label for="bronze">Bronze:</label>
+        <input id="bronze" name="bronze" type="number" min="1" max="2147483647" required>
+      </div>
+
+      <div class="input-group">
+        <label for="silver">Silver:</label>
+        <input id="silver" name="silver" type="number" min="1" max="2147483647" required>
+      </div>
+
+      <div class="input-group">
+        <label for="gold">Gold:</label>
+        <input id="gold" name="gold" type="number" min="1" max="2147483647" required>
+      </div>
+
+      <div class="input-group">
+        <label for="diamond">Diamond:</label>
+        <input id="diamond" name="diamond" type="number" min="1" max="2147483647" required>
+      </div>
+
+      <div class="input-group">
+        <label for="champ">Champ:</label>
+        <input id="champ" name="champ" type="number" min="1" max="2147483647" required>
+      </div>
+    </fieldset>
+
+    <button type="button" class="btn-primary" onclick="generateJSON()">Generate JSON</button>
+  </form>
+
+  <textarea id="jsonOutput" readonly placeholder="Generated JSON will appear here..."></textarea>
+
+  <script>
+    function generateJSON() {
+      const form = document.getElementById('profileForm');
+      const data = new FormData(form);
+      const json = {
+        version: 2,
+        data: JSON.stringify({
+          lastSaved: "0001-01-01T00:00:00Z",
+          lastIAPDate: "0001-01-01T00:00:00Z",
+          highScoreCollection: { default: parseInt(data.get('highScore')) || 0 },
+          userStatCollection: {
+            102: parseInt(data.get('champ')) || 0,
+            103: parseInt(data.get('diamond')) || 0,
+            104: parseInt(data.get('gold')) || 0,
+            105: parseInt(data.get('silver')) || 0,
+            106: parseInt(data.get('bronze')) || 0
+          }
+        })
+      };
+
+      const output = document.getElementById('jsonOutput');
+      output.value = JSON.stringify(json, null, 2);
+    }
+  </script>
+</body>
+
+</html>
