@@ -5,61 +5,121 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download Button</title>
     <style>
-        body {
+        /* General Styles */
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Container */
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Header */
+.container h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
     color: #333;
 }
 
-.container {
-    text-align: center;
-    padding: 50px;
+.container p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: #555;
 }
 
-h1 {
-    font-size: 2.5em;
+/* Info Box */
+.info-box {
+    padding: 15px;
+    background-color: #e0f7fa;
+    border: 1px solid #00acc1;
+    border-radius: 6px;
     margin-bottom: 20px;
-    color: #ffffff;
 }
 
-p {
-    font-size: 1.2em;
-    margin-bottom: 30px;
-    color: #ffffff;
+.info-box p {
+    margin: 0;
+    font-size: 1rem;
+    color: #00796b;
 }
 
+/* List Styles */
 .three-column-list {
-      display: flex;
-      flex-wrap: wrap;
-      list-style-type: none; 
-      margin: 20px;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    text-align: left;
+    margin-bottom: 20px;
+}
 
-    .three-column-list li {
-      flex: 1 1 30%;
-      margin: 10px 0;
-      padding: 5px;
-      font-size: 16px;
-      color: #ffffff;
-    }
+.three-column-list li {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
 
+/* Download Button */
 .download-btn {
     display: inline-block;
-    padding: 15px 30px;
-    font-size: 1em;
+    padding: 10px 20px;
+    font-size: 1.2rem;
     color: #fff;
-    background-color: #007BFF;
+    background-color: #007bff;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .download-btn:hover {
     background-color: #0056b3;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .three-column-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .download-btn {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .three-column-list {
+        grid-template-columns: 1fr;
+    }
+
+    .container h1 {
+        font-size: 1.5rem;
+    }
+
+    .info-box p {
+        font-size: 0.9rem;
+    }
+
+    .download-btn {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
 }
 
     </style>

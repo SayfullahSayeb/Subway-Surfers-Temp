@@ -3,7 +3,121 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="styles.css">
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  header {
+    color: #fff;
+    text-align: center;
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  fieldset {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  legend {
+    font-weight: bold;
+  }
+
+  .input-group {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0;
+  }
+
+  label {
+    font-weight: bold;
+    width: 150px;
+  }
+
+  input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+margin: 0 auto;
+padding: 10px 20px;
+  }
+
+  button:hover {
+    background-color: #555;
+  }
+
+  textarea {
+    width: 90%;
+    height: 200px;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+  }
+
+  .input-group input {
+    border: 1px solid #ccc;
+  }
+
+  @media (max-width: 1024px) {
+    form {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    fieldset {
+      width: 90%;
+    }
+
+    button {
+      width: 100%;
+      max-width: 300px;
+    }
+
+    textarea {
+      width: 95%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    fieldset {
+      margin: 1rem 0.5rem;
+      padding: 0.5rem;
+    }
+
+    .
+</style>
 </head>
 
 <body>
@@ -19,9 +133,10 @@
         <input id="currentScore" name="currentScore" type="number" min="1" required>
       </div>
     </fieldset>
-
-    <button type="button" onclick="generateJSON()">Generate JSON</button>
   </form>
+
+  
+  <button type="button" onclick="generateJSON()">Generate JSON</button>
 
   <textarea id="jsonOutput" readonly placeholder="Generated JSON will appear here..."></textarea>
 
