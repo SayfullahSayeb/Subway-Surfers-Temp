@@ -8,7 +8,7 @@ git add .
 git commit -m "Improve performance"
 
 # Push the main branch to the remote repository
-git push origin main
+git push origin main --force
 
 # Switch to the gh-pages branch
 git checkout gh-pages
@@ -28,7 +28,7 @@ git add .
 git commit -m "Update GitHub Pages with latest changes"
 
 # Push the gh-pages branch to the remote repository
-git push origin gh-pages
+git push origin gh-pages --force
 
 # Switch back to the main branch
 git checkout main
