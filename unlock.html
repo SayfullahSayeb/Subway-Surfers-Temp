@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body{font-family:Arial,sans-serif;margin:20px}
+.container{display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.box{width:30%;border:1px solid #ccc;padding:20px;border-radius:8px;box-shadow:0 2px 5px rgba(0,0,0,0.1);text-align:center}
+.big-text{font-size:24px;font-weight:bold;margin-bottom:10px}
+.normal-text{font-size:16px;color:#555;margin-bottom:10px}
+.box-buttons{margin-top:10px}
+.box-buttons button{margin:5px;padding:10px 15px;font-size:14px;cursor:pointer}
+#json-display{margin-top:20px;padding:20px;border:1px solid #ccc;border-radius:8px;background:#000000;white-space:pre-wrap;height:200px;overflow-y:auto}
+#json-display-buttons{margin-top:10px;text-align:center}
+#json-display-buttons button{margin:5px;padding:10px 15px;font-size:14px;cursor:pointer}
+.notification{position:fixed;top:20px;right:20px;background-color:#4caf50;color:#fff;padding:15px 20px;border-radius:5px;box-shadow:0 2px 5px rgba(0,0,0,0.1);opacity:0;transition:opacity 0.3s ease-in-out}
+.notification.error{background-color:#f44336}
+.notification.show{opacity:1}
+@media (max-width:768px){
+.container{flex-direction:column}
+.box{width:100%}
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box" id="box1">
+            <div class="big-text">Characters</div>
+            <div class="normal-text">Put this file in Android/data/com.kiloo.subwaysurf/files/profile/characters_inventory.json</div>
+            <div class="box-buttons">
+                <button onclick="generateBoxJSON(1)">Generate</button>
+                <button onclick="downloadBoxJSON(1)">Download</button>
+            </div>
+        </div>
+        <div class="box" id="box2">
+            <div class="big-text">Hoverboards</div>
+            <div class="normal-text">Put this file in Android/data/com.kiloo.subwaysurf/files/profile/boards_inventory.json</div>
+            <div class="box-buttons">
+                <button onclick="generateBoxJSON(2)">Generate</button>
+                <button onclick="downloadBoxJSON(2)">Download</button>
+            </div>
+        </div>
+        <div class="box" id="box3">
+            <div class="big-text">Portraits</div>
+            <div class="normal-text">Put this file in Android/data/com.kiloo.subwaysurf/files/profile/profile_portrait.json</div>
+            <div class="box-buttons">
+                <button onclick="generateBoxJSON(3)">Generate</button>
+                <button onclick="downloadBoxJSON(3)">Download</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="json-display"></div>
+    <div id="json-display-buttons">
+        <button onclick="copyJSON()">Copy JSON</button>
+    </div>
+    <div id="notification" class="notification"></div>
+
+    <script>
+        const jsonPaths = [
+            'json/characters_inventory.json',
+            'json/boards_inventory.json',
+            'json/profile_portrait.json'
+        ];
+
+        const boxJSON = {};
+
+        function showNotification(message, isError = false) {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.className = `notification ${isError ? 'error' : ''} show`;
+            setTimeout(() => {
+                notification.className = 'notification';
+            }, 3000);
+        }
+
+        async function generateBoxJSON(boxNumber) {
+            try {
+                const response = await fetch(jsonPaths[boxNumber - 1]);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                boxJSON[`box${boxNumber}`] = data;
+
+                const display = document.getElementById('json-display');
+                display.textContent = JSON.stringify(data, null, 2); // Show exact JSON from file
+                showNotification(`JSON for Box ${boxNumber} loaded successfully!`);
+            } catch (error) {
+                boxJSON[`box${boxNumber}`] = { error: `Failed to load JSON from ${jsonPaths[boxNumber - 1]}: ${error.message}` };
+                showNotification(`Error for Box ${boxNumber}: ${error.message}`, true);
+            }
+        }
+
+        function copyJSON() {
+            const jsonToCopy = document.getElementById('json-display').textContent;
+            navigator.clipboard.writeText(jsonToCopy).then(() => {
+                showNotification(`JSON copied to clipboard!`);
+            }).catch(err => {
+                showNotification(`Failed to copy JSON: ${err.message}`, true);
+            });
+        }
+
+        function downloadBoxJSON(boxNumber) {
+            try {
+                const blob = new Blob([JSON.stringify(boxJSON[`box${boxNumber}`], null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = jsonPaths[boxNumber - 1].split('/').pop(); // Use original filename
+                a.click();
+                URL.revokeObjectURL(url);
+                showNotification(`JSON file downloaded successfully!`);
+            } catch (err) {
+                showNotification(`Failed to download JSON: ${err.message}`, true);
+            }
+        }
+    </script>
+</body>
+</html>
