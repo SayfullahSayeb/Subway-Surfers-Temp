@@ -1,168 +1,23 @@
-/* General Reset */
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Arial', sans-serif;
-    background-color: #0e0e0e; /* Dark background */
-    color: #ffffff; /* White text */
-  }
-  
-  /* Container */
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  /* Header */
-  header {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  header h1 {
-    font-size: 3rem;
-    color: #00ffcc; /* Neon teal */
-    text-shadow: 0px 0px 15px #00ffcc;
-  }
-  
-  .info-box p {
-    margin: 10px 0;
-    font-size: 1.1rem;
-  }
-  
-  .warning {
-    color: #ff5555; /* Warning red */
-    text-shadow: 0px 0px 5px #ff5555;
-  }
-  
-  /* Form Section */
-  #forms, #top-run {
-    background-color: #1a1a1a; /* Slightly lighter dark */
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px 0;
-    width: 100%;
-    max-width: 600px;
-    box-shadow: 0px 0px 15px rgba(0, 255, 204, 0.3); /* Teal glow */
-  }
-  
-  .form-section {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-  }
-  
-  /* Input Fields */
-  .campo-wrapper {
-    display: flex;
-    align-items: center;
-    background: #121212;
-    border: 1px solid #333333;
-    border-radius: 8px;
-    padding: 10px;
-    transition: all 0.3s ease;
-  }
-  
-  .campo-wrapper:hover {
-    border-color: #00ffcc; /* Teal glow */
-    box-shadow: 0px 0px 10px #00ffcc;
-  }
-  
-  .campo-wrapper img {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-    border-radius: 5px;
-    object-fit: cover;
-  }
-  
-  .campo {
-    flex: 1;
-    background: transparent;
-    border: none;
-    color: #ffffff;
-    font-size: 1rem;
-    outline: none;
-    padding: 5px;
-  }
-  
-  .campo::placeholder {
-    color: #aaaaaa; /* Placeholder grey */
-  }
-  
-  /* Buttons */
-  .glow-button {
-    background-color: #00ffcc; /* Neon teal */
-    color: #000000;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    margin: 10px;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    box-shadow: 0px 0px 10px #00ffcc;
-  }
-  
-  .glow-button:hover {
-    background-color: #009977; /* Darker teal */
-    box-shadow: 0px 0px 15px #009977;
-    color: #ffffff;
-  }
-  
-  button:active {
-    transform: scale(0.95);
-  }
-  
-  /* Top Run Section */
-  #top-run h2 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-    color: #ffaa00; /* Orange accent */
-    text-shadow: 0px 0px 10px #ffaa00;
-  }
-  
-  #top-run label {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-    display: block;
-    color: #ffffff;
-  }
-  
-  #top-run .campo-wrapper {
-    margin-top: 10px;
-  }
-  
-  /* Textarea */
-  textarea {
-    width: 100%;
-    background: #121212;
-    border: 1px solid #333333;
-    color: #ffffff;
-    border-radius: 8px;
-    padding: 10px;
-    font-size: 1rem;
-    resize: none;
-    box-shadow: inset 0px 0px 5px rgba(0, 255, 204, 0.3);
-  }
-  
-  /* Footer */
-  footer {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 1rem;
-  }
-  
-  footer a {
-    color: #00ffcc;
-    text-decoration: none;
-  }
-  
-  footer a:hover {
-    text-shadow: 0px 0px 10px #00ffcc;
-  }
-  
+body,html{margin:0;padding:0;font-family:'Arial',sans-serif;background-color:#0e0e0e;color:#ffffff}
+.container{display:flex;flex-direction:column;align-items:center;padding:20px}
+header{text-align:center;margin-bottom:20px}
+header h1{font-size:3rem;color:#00ffcc;text-shadow:0px 0px 15px #00ffcc}
+.info-box p{margin:10px 0;font-size:1.1rem}
+.warning{color:#ff5555;text-shadow:0px 0px 5px #ff5555}
+#forms,#top-run{background-color:#1a1a1a;border-radius:10px;padding:20px;margin:20px 0;width:100%;max-width:600px;box-shadow:0px 0px 15px rgba(0,255,204,0.3)}
+.form-section{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px}
+.campo-wrapper{display:flex;align-items:center;background:#121212;border:1px solid #333333;border-radius:8px;padding:10px;transition:all 0.3s ease}
+.campo-wrapper:hover{border-color:#00ffcc;box-shadow:0px 0px 10px #00ffcc}
+.campo-wrapper img{width:40px;height:40px;margin-right:10px;border-radius:5px;object-fit:cover}
+.campo{flex:1;background:transparent;border:none;color:#ffffff;font-size:1rem;outline:none;padding:5px}
+.campo::placeholder{color:#aaaaaa}
+.glow-button{background-color:#00ffcc;color:#000000;border:none;border-radius:5px;padding:10px 20px;font-size:1.2rem;margin:10px;cursor:pointer;text-transform:uppercase;font-weight:bold;transition:all 0.3s ease;box-shadow:0px 0px 10px #00ffcc}
+.glow-button:hover{background-color:#009977;box-shadow:0px 0px 15px #009977;color:#ffffff}
+button:active{transform:scale(0.95)}
+#top-run h2{font-size:1.8rem;margin-bottom:10px;color:#ffaa00;text-shadow:0px 0px 10px #ffaa00}
+#top-run label{font-size:1.2rem;margin-bottom:5px;display:block;color:#ffffff}
+#top-run .campo-wrapper{margin-top:10px}
+textarea{width:100%;background:#121212;border:1px solid #333333;color:#ffffff;border-radius:8px;padding:10px;font-size:1rem;resize:none;box-shadow:inset 0px 0px 5px rgba(0,255,204,0.3)}
+footer{margin-top:20px;text-align:center;font-size:1rem}
+footer a{color:#00ffcc;text-decoration:none}
+footer a:hover{text-shadow:0px 0px 10px #00ffcc}
