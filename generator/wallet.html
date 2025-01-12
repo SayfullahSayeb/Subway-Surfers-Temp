@@ -2,130 +2,103 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-body{font-family:Arial,sans-serif;margin:0;padding:0}
-header{color:#fff;text-align:center}
-form{display:flex;flex-wrap:wrap;justify-content:center;padding:1rem}
-fieldset{border:1px solid #ccc;border-radius:5px;margin:1rem;padding:1rem}
-legend{font-weight:bold}
-.input-group{display:flex;align-items:center;margin:0.5rem 0}
-img{width:50px;height:50px;margin-right:1rem}
-label{font-weight:bold;width:150px}
-input{padding:0.5rem;font-size:1rem;border:1px solid #ccc;border-radius:5px}
-.button-group{display:flex;justify-content:center}
-button{padding:0.5rem 1rem;font-size:1rem;border:none;border-radius:5px;background-color:#333;color:#fff;cursor:pointer;margin:0 0.5rem}
-button:hover{background-color:#555}
-.copy-btn{background-color:#4CAF50}
-textarea{width:90%;height:200px;margin:1rem;padding:1rem;border:1px solid #ccc;border-radius:5px;resize:none}
-.input-group input{border:1px solid #ccc}
-@media (max-width:1024px){
-form{flex-direction:column;align-items:center}
-fieldset{width:90%}
-.button-group{flex-direction:column;align-items:center;gap:10px}
-button{width:100%;max-width:300px}
-textarea{width:95%}
-}
-@media (max-width:768px){
-fieldset{margin:1rem 0.5rem;padding:0.5rem}
-.input-group{flex-direction:column;align-items:flex-start}
-label{width:auto;margin-bottom:0.5rem}
-img{width:40px;height:40px;margin-bottom:0.5rem}
-input,button,textarea{font-size:0.9rem}
-button{padding:0.4rem 0.8rem}
-}
-@media (max-width:480px){
-header h1{font-size:1.5rem}
-header p{font-size:0.9rem}
-fieldset{margin:0.5rem;padding:0.5rem}
-.input-group img{width:30px;height:30px}
-.button-group{gap:5px}
-button{padding:0.3rem 0.5rem;font-size:0.8rem}
-textarea{height:150px}
-}
+body,html{margin:0;padding:0;font-family:'Bungee',cursive;background-color:#0e0e0e;color:#ffffff}
+.container{display:flex;flex-direction:column;align-items:center;padding:20px}
+header{text-align:center;margin-bottom:20px}
+header h1{font-size:3rem;color:#00ffcc;text-shadow:0px 0px 15px #00ffcc}
+.currency-panel{background-color:#1a1a1a;border-radius:10px;padding:20px;margin:20px 0;width:100%;max-width:600px;box-shadow:0px 0px 15px rgba(0,255,204,0.3)}
+.currency-group{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-bottom:20px}
+.currency-item{display:flex;align-items:center;background:#121212;border:1px solid #333333;border-radius:8px;padding:10px;transition:all 0.3s ease}
+.currency-item:hover{border-color:#00ffcc;box-shadow:0px 0px 10px #00ffcc}
+.currency-item img{width:40px;height:40px;margin-right:10px;border-radius:5px;object-fit:cover}
+.currency-input{flex:1;background:transparent;border:none;color:#ffffff;font-size:1rem;outline:none;padding:5px}
+.currency-input::placeholder{color:#aaaaaa}
+.glow-button{background-color:#00ffcc;color:#000000;border:none;border-radius:5px;padding:10px 20px;font-size:1.2rem;margin:10px;cursor:pointer;font-weight:bold;transition:all 0.3s ease;box-shadow:0px 0px 10px #00ffcc}
+.glow-button:hover{background-color:#009977;box-shadow:0px 0px 15px #009977;color:#ffffff}
+button:active{transform:scale(0.95)}
+textarea{width:90%;height:150px;background:#121212;border:1px solid #333333;color:#ffffff;border-radius:8px;padding:10px;font-size:1rem;resize:none;display:block;margin:0 auto}
+#copyAlert{position:fixed;bottom:20px;right:20px;background-color:#00ffcc;color:#000000;font-size:1rem;padding:10px 20px;border-radius:5px;box-shadow:0px 0px 15px rgba(0,255,204,0.5);opacity:0;transition:opacity 0.5s ease,transform 0.3s ease;transform:translateY(20px);z-index:1000}
+#copyAlert.show{opacity:1;transform:translateY(0)}
+#copyAlert.hide{opacity:0;transform:translateY(20px)}
+
   </style>
 </head>
 <body>
-  <header>
-    <h1>Wallet</h1>
-    <p>Enter values each field and click generate</p>
-  </header>
+  <div class="container">
+    <header>
+      <h1>Wallet</h1>
+      <p>Enter values for each field and click generate</p>
+    </header>
 
-  <form>
-    <fieldset>
-      <legend>Input Currencies</legend>
-      <div class="input-group">
-        <img src="img/coins.jpg" alt="Money Icon">
-        <label for="currency1">Game coins:</label>
-        <input type="number" id="currency1" min="0" value="0">
+    <div class="currency-panel">
+      <div class="currency-group">
+        <div class="currency-item">
+          <img src="img/coins.jpg" alt="Money Icon">
+          <input type="number" id="currency1" class="currency-input" min="0" placeholder="Game coins">
+        </div>
+        <div class="currency-item">
+          <img src="img/keys.webp" alt="Keys Icon">
+          <input type="number" id="currency2" class="currency-input" min="0" placeholder="Game keys">
+        </div>
+        <div class="currency-item">
+          <img src="img/hoverboard.png" alt="Hoverboards Icon">
+          <input type="number" id="currency3" class="currency-input" min="0" placeholder="Hoverboards">
+        </div>
+        <div class="currency-item">
+          <img src="img/Headstart.webp" alt="Red Boost Icon">
+          <input type="number" id="currency4" class="currency-input" min="0" placeholder="Headstarts">
+        </div>
+        <div class="currency-item">
+          <img src="img/scorebooster.png" alt="Blue Boost Icon">
+          <input type="number" id="currency5" class="currency-input" min="0" placeholder="Score Boosters">
+        </div>
+        <div class="currency-item">
+          <img src="img/EventCoin.webp" alt="Event Coin Icon">
+          <input type="number" id="currency6" class="currency-input" min="0" placeholder="Eventcoins">
+        </div>
       </div>
-      <div class="input-group">
-        <img src="img/keys.webp" alt="Keys Icon">
-        <label for="currency2">Game keys:</label>
-        <input type="number" id="currency2" min="0" value="0">
-      </div>
-      <div class="input-group">
-        <img src="img/hoverboard.png" alt="Snowboards Icon">
-        <label for="currency3">Hoverboards:</label>
-        <input type="number" id="currency3" min="0" value="0">
-      </div>
-      <div class="input-group">
-        <img src="img/Headstart.webp" alt="Red Boost Icon">
-        <label for="currency4">Headstarts:</label>
-        <input type="number" id="currency4" min="0" value="0">
-      </div>
-      <div class="input-group">
-        <img src="img/scorebooster.png" alt="Blue Boost Icon">
-        <label for="currency5">Score Boosters:</label>
-        <input type="number" id="currency5" min="0" value="0">
-      </div>
-      <div class="input-group">
-        <img src="img/EventCoin.webp" alt="Event Coin Icon">
-        <label for="currency6">Eventcoins:</label>
-        <input type="number" id="currency6" min="0" value="0">
-      </div>
-    </fieldset>
 
-    <fieldset>
-      <legend>Characters Token</legend>
-      <div class="input-group">
-        <img src="img/Jake.webp" alt="Jake Coins Icon">
-        <label for="currency20">Jake coins</label>
-        <input type="number" id="currency20" min="0" value="0">
+      <div class="currency-group">
+        <div class="currency-item">
+          <img src="img/Jake.webp" alt="Jake Coins Icon">
+          <input type="number" id="currency20" class="currency-input" min="0" placeholder="Jake coins">
+        </div>
+        <div class="currency-item">
+          <img src="img/Fresh.webp" alt="Fresh Coins Icon">
+          <input type="number" id="currency21" class="currency-input" min="0" placeholder="Fresh coins">
+        </div>
+        <div class="currency-item">
+          <img src="img/Tricky.webp" alt="Tricky Coins Icon">
+          <input type="number" id="currency22" class="currency-input" min="0" placeholder="Tricky coins">
+        </div>
+        <div class="currency-item">
+          <img src="img/Spike.webp" alt="Spike Coins Icon">
+          <input type="number" id="currency23" class="currency-input" min="0" placeholder="Spike coins">
+        </div>
+        <div class="currency-item">
+          <img src="img/Yutani.webp" alt="Yutani Coins Icon">
+          <input type="number" id="currency24" class="currency-input" min="0" placeholder="Yutani coins">
+        </div>
       </div>
-      <div class="input-group">
-        <img src="img/Fresh.webp" alt="Fresh Coins Icon">
-        <label for="currency21">Fresh coins</label>
-        <input type="number" id="currency21" min="0" value="0">
-      </div>
-      <div class="input-group">
-        <img src="img/Tricky.webp" alt="Tricky Coins Icon">
-        <label for="currency22">Tricky coins</label>
-        <input type="number" id="currency22" min="0" value="0">
-      </div>
-      <div class="input-group">
-        <img src="img/Spike.webp" alt="Spike Coins Icon">
-        <label for="currency23">Spike coins</label>
-        <input type="number" id="currency23" min="0" value="0">
-      </div>
-      <div class="input-group">
-        <img src="img/Yutani.webp" alt="Yutani Coins Icon">
-        <label for="currency24">Yutani coins</label>
-        <input type="number" id="currency24" min="0" value="0">
-      </div>
-    </fieldset>
 
+      <div class="button-group">
+        <button type="button" onclick="generateRandomNumbers()" class="glow-button">Generate Random</button>
+        <button type="button" onclick="generateJSON()" class="glow-button">Submit</button>
+        <button type="button" onclick="copyJSON()" id="copyButton" class="glow-button" disabled>Copy JSON</button>
+        <button type="button" onclick="downloadJSON()" id="downloadButton" class="glow-button" disabled>Download JSON</button>
+      </div>
 
-  </form>
-  <div class="button-group">
-    <button type="button" onclick="generateRandomNumbers()">Generate Random</button>
-    <button type="button" onclick="generateJSON()">Generate JSON</button>
-    <button type="button" class="copy-btn" onclick="copyJSON()">Copy JSON</button>
+      <div id="copyAlert">JSON copied to clipboard!</div>
+
+      <textarea id="jsonOutput" readonly placeholder="Generated JSON will appear here..."></textarea>
+    </div>
   </div>
-  <textarea id="jsonOutput" readonly placeholder="Generated JSON will appear here..."></textarea>
-
-
 
   <script>
+    let isSubmitted = false;
+
     function generateRandomNumbers() {
       const max = 2147483647;
       document.querySelectorAll('input[type="number"]').forEach(input => {
@@ -167,13 +140,41 @@ textarea{height:150px}
       };
 
       document.getElementById('jsonOutput').value = JSON.stringify(json, null, 2);
+
+      // Enable Copy and Download buttons
+      isSubmitted = true;
+      document.getElementById('copyButton').disabled = false;
+      document.getElementById('downloadButton').disabled = false;
     }
 
     function copyJSON() {
+      if (!isSubmitted) return;
+
       const jsonOutput = document.getElementById('jsonOutput');
       jsonOutput.select();
       document.execCommand('copy');
-      alert('JSON copied to clipboard!');
+
+      const alertBox = document.getElementById('copyAlert');
+      alertBox.classList.add('show');
+      setTimeout(() => {
+        alertBox.classList.remove('show');
+        alertBox.classList.add('hide');
+      }, 2000);
+    }
+
+    function downloadJSON() {
+      if (!isSubmitted) return;
+
+      const jsonOutput = document.getElementById('jsonOutput').value;
+      const blob = new Blob([jsonOutput], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = "wallet.json";
+      a.click();
+
+      URL.revokeObjectURL(url); // Cleanup the URL object
     }
   </script>
 </body>
