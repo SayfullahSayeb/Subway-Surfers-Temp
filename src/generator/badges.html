@@ -4,148 +4,32 @@
 <head>
   <meta charset="UTF-8">
 <style>
-/* General Reset */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-    color: #ffffff;
+body{font-family:Arial,sans-serif;margin:0;padding:0;background-color:#f9f9f9;color:#ffffff}
+header{text-align:center;padding:1rem 0;color:#ffffff}
+header h1{margin:0;font-size:2rem}
+header p{margin:0.5rem 0 0}
+form{max-width:800px;margin:20px auto;padding:20px;background:#374055;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.1)}
+fieldset{border:1px solid #ddd;border-radius:6px;padding:15px}
+legend{font-size:1.2rem;font-weight:bold}
+.input-group{display:flex;align-items:center;margin-bottom:15px}
+.input-group label{display:flex;align-items:center;width:150px;font-weight:bold;gap:10px}
+.input-group input{flex:1;padding:5px;font-size:1rem}
+.input-group img{width: 40px;height: 40px;object-fit: contain;border-radius: 50%;
+.btn-primary{display:block;width:200px;margin:20px auto;padding:10px 15px;font-size:1rem;background-color:#007bff;color:#fff;border:none;border-radius:4px;cursor:pointer;text-align:center}
+.btn-primary:hover{background-color:#0056b3}
+textarea{width:calc(100% - 40px);height:150px;margin:20px auto;padding:10px;font-size:1rem;border:1px solid #ccc;border-radius:4px;resize:none;display:block;background:#f4f4f4}
+@media (max-width:768px){
+.input-group label{flex:1 1 100%;text-align:left}
+.input-group input{flex:1 1 100%}
+form{padding:15px}
+.btn-primary{width:100%}
+textarea{width:calc(100% - 30px)}
 }
-
-/* Header */
-header {
-    text-align: center;
-    padding: 1rem 0;
-    color: #ffffff;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 2rem;
-}
-
-header p {
-    margin: 0.5rem 0 0;
-}
-
-/* Form Styles */
-form {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #374055;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-fieldset {
-    border: 1px solid #ddd;
-    border-radius: 6px;
-    padding: 15px;
-}
-
-legend {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-.input-group {
-    margin-bottom: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 1rem;
-}
-
-.input-group label {
-    flex: 1 1 30%;
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: right;
-}
-
-.input-group input {
-    flex: 1 1 60%;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-/* Buttons */
-.btn-primary {
-    display: block;
-    width: 200px;
-    margin: 20px auto;
-    padding: 10px 15px;
-    font-size: 1rem;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-align: center;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
-}
-
-/* Textarea */
-textarea {
-    width: calc(100% - 40px);
-    height: 150px;
-    margin: 20px auto;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: none;
-    display: block;
-    background: #f4f4f4;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .input-group label {
-        flex: 1 1 100%;
-        text-align: left;
-    }
-
-    .input-group input {
-        flex: 1 1 100%;
-    }
-
-    form {
-        padding: 15px;
-    }
-
-    .btn-primary {
-        width: 100%;
-    }
-
-    textarea {
-        width: calc(100% - 30px);
-    }
-}
-
-@media (max-width: 480px) {
-    fieldset {
-        padding: 10px;
-    }
-
-    legend {
-        font-size: 1rem;
-    }
-
-    .input-group {
-        gap: 0.5rem;
-    }
-
-    .btn-primary {
-        padding: 8px 12px;
-    }
+@media (max-width:480px){
+fieldset{padding:10px}
+legend{font-size:1rem}
+.input-group{gap:0.5rem}
+.btn-primary{padding:8px 12px}
 }
 
 </style>
@@ -160,39 +44,50 @@ textarea {
   <form id="profileForm">
     <fieldset>
       <legend>Game Data</legend>
-
+  
       <div class="input-group">
         <label for="highScore">High Score:</label>
         <input id="highScore" name="highScore" type="number" min="1" max="2147483647" required>
       </div>
-
+  
       <div class="input-group">
-        <label for="bronze">Bronze:</label>
+        <label for="bronze">
+          <img src="img/bronze.png" alt="Bronze"> Bronze:
+        </label>
         <input id="bronze" name="bronze" type="number" min="1" max="2147483647" required>
       </div>
-
+  
       <div class="input-group">
-        <label for="silver">Silver:</label>
+        <label for="silver">
+          <img src="img/silver.png" alt="Silver"> Silver:
+        </label>
         <input id="silver" name="silver" type="number" min="1" max="2147483647" required>
       </div>
-
+  
       <div class="input-group">
-        <label for="gold">Gold:</label>
+        <label for="gold">
+          <img src="img/gold.png" alt="Gold"> Gold:
+        </label>
         <input id="gold" name="gold" type="number" min="1" max="2147483647" required>
       </div>
-
+  
       <div class="input-group">
-        <label for="diamond">Diamond:</label>
+        <label for="diamond">
+          <img src="img/diamond.png" alt="Diamond"> Diamond:
+        </label>
         <input id="diamond" name="diamond" type="number" min="1" max="2147483647" required>
       </div>
-
+  
       <div class="input-group">
-        <label for="champ">Champ:</label>
+        <label for="champ">
+          <img src="img/champ.png" alt="Champ"> Champ:
+        </label>
         <input id="champ" name="champ" type="number" min="1" max="2147483647" required>
       </div>
     </fieldset>
   </form>
-
+  
+  
       <button type="button" class="btn-primary" onclick="generateJSON()">Generate JSON</button>
 
   <textarea id="jsonOutput" readonly placeholder="Generated JSON will appear here..."></textarea>
