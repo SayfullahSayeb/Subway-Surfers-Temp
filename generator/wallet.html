@@ -2,7 +2,47 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="styles.css">
+  <style>
+body{font-family:Arial,sans-serif;margin:0;padding:0}
+header{color:#fff;text-align:center}
+form{display:flex;flex-wrap:wrap;justify-content:center;padding:1rem}
+fieldset{border:1px solid #ccc;border-radius:5px;margin:1rem;padding:1rem}
+legend{font-weight:bold}
+.input-group{display:flex;align-items:center;margin:0.5rem 0}
+img{width:50px;height:50px;margin-right:1rem}
+label{font-weight:bold;width:150px}
+input{padding:0.5rem;font-size:1rem;border:1px solid #ccc;border-radius:5px}
+.button-group{display:flex;justify-content:center}
+button{padding:0.5rem 1rem;font-size:1rem;border:none;border-radius:5px;background-color:#333;color:#fff;cursor:pointer;margin:0 0.5rem}
+button:hover{background-color:#555}
+.copy-btn{background-color:#4CAF50}
+textarea{width:90%;height:200px;margin:1rem;padding:1rem;border:1px solid #ccc;border-radius:5px;resize:none}
+.input-group input{border:1px solid #ccc}
+@media (max-width:1024px){
+form{flex-direction:column;align-items:center}
+fieldset{width:90%}
+.button-group{flex-direction:column;align-items:center;gap:10px}
+button{width:100%;max-width:300px}
+textarea{width:95%}
+}
+@media (max-width:768px){
+fieldset{margin:1rem 0.5rem;padding:0.5rem}
+.input-group{flex-direction:column;align-items:flex-start}
+label{width:auto;margin-bottom:0.5rem}
+img{width:40px;height:40px;margin-bottom:0.5rem}
+input,button,textarea{font-size:0.9rem}
+button{padding:0.4rem 0.8rem}
+}
+@media (max-width:480px){
+header h1{font-size:1.5rem}
+header p{font-size:0.9rem}
+fieldset{margin:0.5rem;padding:0.5rem}
+.input-group img{width:30px;height:30px}
+.button-group{gap:5px}
+button{padding:0.3rem 0.5rem;font-size:0.8rem}
+textarea{height:150px}
+}
+  </style>
 </head>
 <body>
   <header>
@@ -10,64 +50,80 @@
     <p>Enter values each field and click generate</p>
   </header>
 
-  <form id="jsonForm">
+  <form>
     <fieldset>
       <legend>Input Currencies</legend>
       <div class="input-group">
+        <img src="img/coins.jpg" alt="Money Icon">
         <label for="currency1">Game coins:</label>
         <input type="number" id="currency1" min="0" value="0">
       </div>
       <div class="input-group">
+        <img src="img/keys.webp" alt="Keys Icon">
         <label for="currency2">Game keys:</label>
         <input type="number" id="currency2" min="0" value="0">
       </div>
       <div class="input-group">
+        <img src="img/hoverboard.png" alt="Snowboards Icon">
         <label for="currency3">Hoverboards:</label>
         <input type="number" id="currency3" min="0" value="0">
       </div>
       <div class="input-group">
+        <img src="img/Headstart.webp" alt="Red Boost Icon">
         <label for="currency4">Headstarts:</label>
         <input type="number" id="currency4" min="0" value="0">
       </div>
       <div class="input-group">
+        <img src="img/scorebooster.png" alt="Blue Boost Icon">
         <label for="currency5">Score Boosters:</label>
         <input type="number" id="currency5" min="0" value="0">
       </div>
       <div class="input-group">
+        <img src="img/EventCoin.webp" alt="Event Coin Icon">
         <label for="currency6">Eventcoins:</label>
         <input type="number" id="currency6" min="0" value="0">
       </div>
-      <fieldset>
-        <legend>Characters Token</legend>
-        <div class="input-group">
-          <label for="currency20">Jake coins</label>
-          <input type="number" id="currency20" min="0" value="0">
-        </div>
-        <div class="input-group">
-          <label for="currency21">Fresh coins</label>
-          <input type="number" id="currency21" min="0" value="0">
-        </div>
-        <div class="input-group">
-          <label for="currency22">Tricky coins</label>
-          <input type="number" id="currency22" min="0" value="0">
-        </div>
-        <div class="input-group">
-          <label for="currency23">Spike coins</label>
-          <input type="number" id="currency23" min="0" value="0">
-        </div>
-        <div class="input-group">
-          <label for="currency24">Yutani coins</label>
-          <input type="number" id="currency24" min="0" value="0">
-        </div>
-      </fieldset>
     </fieldset>
 
+    <fieldset>
+      <legend>Characters Token</legend>
+      <div class="input-group">
+        <img src="img/Jake.webp" alt="Jake Coins Icon">
+        <label for="currency20">Jake coins</label>
+        <input type="number" id="currency20" min="0" value="0">
+      </div>
+      <div class="input-group">
+        <img src="img/Fresh.webp" alt="Fresh Coins Icon">
+        <label for="currency21">Fresh coins</label>
+        <input type="number" id="currency21" min="0" value="0">
+      </div>
+      <div class="input-group">
+        <img src="img/Tricky.webp" alt="Tricky Coins Icon">
+        <label for="currency22">Tricky coins</label>
+        <input type="number" id="currency22" min="0" value="0">
+      </div>
+      <div class="input-group">
+        <img src="img/Spike.webp" alt="Spike Coins Icon">
+        <label for="currency23">Spike coins</label>
+        <input type="number" id="currency23" min="0" value="0">
+      </div>
+      <div class="input-group">
+        <img src="img/Yutani.webp" alt="Yutani Coins Icon">
+        <label for="currency24">Yutani coins</label>
+        <input type="number" id="currency24" min="0" value="0">
+      </div>
+    </fieldset>
+
+
+  </form>
+  <div class="button-group">
     <button type="button" onclick="generateRandomNumbers()">Generate Random</button>
     <button type="button" onclick="generateJSON()">Generate JSON</button>
     <button type="button" class="copy-btn" onclick="copyJSON()">Copy JSON</button>
-  </form>
-
+  </div>
   <textarea id="jsonOutput" readonly placeholder="Generated JSON will appear here..."></textarea>
+
+
 
   <script>
     function generateRandomNumbers() {

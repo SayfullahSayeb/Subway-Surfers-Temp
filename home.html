@@ -5,6 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Subway Surfers JSON Code Generator</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+.image-section {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.instructions {
+    margin-bottom: 2rem;
+    background: var(--dark-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.instructions h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.instructions ol {
+    list-style: decimal;
+    margin: 0;
+    padding: 0;
+    padding-left: 1.5rem;
+}
+
+.instructions li {
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+}
+
+.instructions code {
+    color: var(--primary-color);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0.2rem 0.4rem;
+    border-radius: 5px;
+}
+
+.generator {
+    background: var(--dark-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.generator h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.input-group {
+    margin-bottom: 1rem;
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background: var(--light-bg);
+    color: var(--text-color);
+}
+
+.btn-generate {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    background: var(--primary-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.btn-generate:hover {
+    background: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.output {
+    margin-top: 1.5rem;
+}
+
+#jsonOutput {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background: var(--light-bg);
+    color: var(--text-color);
+    resize: none;
+}
+
+    </style>
 </head>
 <body>
     <div class="container">
