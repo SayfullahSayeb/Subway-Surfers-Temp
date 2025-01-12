@@ -13,7 +13,10 @@ git push origin main --force
 # Switch to the gh-pages branch
 git checkout gh-pages
 
-# Remove all files from the gh-pages branch
+# Create a .gitignore file and add CNAME to it
+echo "CNAME" > .gitignore
+
+# Remove all files except for the ones listed in .gitignore
 git rm -rf .
 
 # Copy the contents of the src folder from the main branch
