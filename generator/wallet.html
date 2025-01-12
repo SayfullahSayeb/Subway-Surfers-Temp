@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-body,html{margin:0;padding:0;font-family:'Bungee',cursive;background-color:#0e0e0e;color:#ffffff}
+body,html{margin:0;padding:0;font-family:Arial, Helvetica, sans-serif ;background-color:#0e0e0e;color:#ffffff}
 .container{display:flex;flex-direction:column;align-items:center;padding:20px}
 header{text-align:center;margin-bottom:20px}
 header h1{font-size:3rem;color:#00ffcc;text-shadow:0px 0px 15px #00ffcc}
@@ -18,18 +18,27 @@ header h1{font-size:3rem;color:#00ffcc;text-shadow:0px 0px 15px #00ffcc}
 .glow-button{background-color:#00ffcc;color:#000000;border:none;border-radius:5px;padding:10px 20px;font-size:1.2rem;margin:10px;cursor:pointer;font-weight:bold;transition:all 0.3s ease;box-shadow:0px 0px 10px #00ffcc}
 .glow-button:hover{background-color:#009977;box-shadow:0px 0px 15px #009977;color:#ffffff}
 button:active{transform:scale(0.95)}
-textarea{width:90%;height:150px;background:#121212;border:1px solid #333333;color:#ffffff;border-radius:8px;padding:10px;font-size:1rem;resize:none;display:block;margin:0 auto}
+textarea{width:90%;height:150px;background:#121212;border:1px solid #333333;color:#ffffff;border-radius:8px;padding:10px;font-size:1rem;resize:none;display:block;margin:0 auto;display:none;} /* Hide by default */
 #copyAlert{position:fixed;bottom:20px;right:20px;background-color:#00ffcc;color:#000000;font-size:1rem;padding:10px 20px;border-radius:5px;box-shadow:0px 0px 15px rgba(0,255,204,0.5);opacity:0;transition:opacity 0.5s ease,transform 0.3s ease;transform:translateY(20px);z-index:1000}
 #copyAlert.show{opacity:1;transform:translateY(0)}
 #copyAlert.hide{opacity:0;transform:translateY(20px)}
-
+.warning-box{background:rgba(245,158,11,0.1);border:1px solid #f59e0b;border-radius:0.5rem;margin:1rem 0}
+.info-box{background:rgba(16,185,129,0.1);border:1px solid #10b981;border-radius:0.5rem;padding:1rem;margin:1rem 0;text-align:center}
+textarea::-webkit-scrollbar { width: 12px; } textarea::-webkit-scrollbar-track { background: #000000; } textarea::-webkit-scrollbar-thumb { background: #00ffcc; border-radius: 6px; } textarea::-webkit-scrollbar-thumb:hover { background: #00ffcc; }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
       <h1>Wallet</h1>
-      <p>Enter values for each field and click generate</p>
+      <div class="warning-box">
+        <p>Insert values that you want in Subway Surf 🎮</p>
+        <p class="warning"><b>⚠️ Please always backup all gameplay data.</b></p>
+      </div>
+      <div class="info-box">
+        <p>📁 Put this file in Android/data/com.kiloo.subwaysurf/files/profile/</p>
+      </div>
+
     </header>
 
     <div class="currency-panel">
@@ -86,8 +95,8 @@ textarea{width:90%;height:150px;background:#121212;border:1px solid #333333;colo
       <div class="button-group">
         <button type="button" onclick="generateRandomNumbers()" class="glow-button">Generate Random</button>
         <button type="button" onclick="generateJSON()" class="glow-button">Submit</button>
-        <button type="button" onclick="copyJSON()" id="copyButton" class="glow-button" disabled>Copy JSON</button>
-        <button type="button" onclick="downloadJSON()" id="downloadButton" class="glow-button" disabled>Download JSON</button>
+        <button type="button" onclick="copyJSON()" id="copyButton" class="glow-button" disabled>Copy</button>
+        <button type="button" onclick="downloadJSON()" id="downloadButton" class="glow-button" disabled>Download File</button>
       </div>
 
       <div id="copyAlert">JSON copied to clipboard!</div>
@@ -139,6 +148,8 @@ textarea{width:90%;height:150px;background:#121212;border:1px solid #333333;colo
         })
       };
 
+      // Display JSON output box
+      document.getElementById('jsonOutput').style.display = 'block';
       document.getElementById('jsonOutput').value = JSON.stringify(json, null, 2);
 
       // Enable Copy and Download buttons
