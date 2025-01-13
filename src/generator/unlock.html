@@ -1,164 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON File Generator</title>
+    <style>
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 2rem;
+            background: var(--dark-bg);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(176, 38, 255, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Individual box styling */
+        .box {
+            background-color: #1f1f1f;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+            text-align: center;
+            transition: all 0.3s ease;
+            width: 250px;
+            margin: 10px;
+            word-wrap: break-word;
+        }
+
+        .box:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
+            transform: scale(1.05);
+        }
+
+        .big-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #00ffcc;
+            margin-bottom: 10px;
+        }
+
+        .normal-text {
+            font-size: 1rem;
+            color: #aaaaaa;
+            margin-bottom: 20px;
+        }
+
+        /* Buttons within each box */
+        .box-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .box-buttons button {
+            background-color: #00ffcc;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .box-buttons button:hover {
+            background-color: #009977;
+            transform: scale(1.05);
+        }
+
+        .box-buttons button:active {
+            transform: scale(0.95);
+        }
+
+        /* JSON Display styling */
+        #json-display {
+            background-color: #121212;
+            color: #00ffcc;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            width: 90%;
+            max-width: 1000px;
+            height: 300px; /* Fixed height */
+            overflow-y: auto; /* Scroll when content exceeds height */
+            position: relative;
+            margin: 0 auto;
+        }
+
+        /* Copy button inside JSON display box */
+        #copy-btn {
+            background-color: #00ffcc;
+            color: #000;
+            padding: 8px 15px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #copy-btn:hover {
+            background-color: #009977;
+            transform: scale(1.05);
+        }
+
+        #copy-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Buttons below JSON display */
+        #json-display-buttons {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        #json-display-buttons button {
+            background-color: #00ffcc;
+            color: #000;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #json-display-buttons button:hover {
+            background-color: #009977;
+            transform: scale(1.05);
+        }
+
+        #json-display-buttons button:active {
+            transform: scale(0.95);
+        }
+
+        /* Notification styling */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #00ffcc;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-shadow: 0px 0px 10px rgba(0, 255, 204, 0.6);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .notification.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .notification.error {
+            background-color: #f59e0b;
+            color: #000;
+        }
+
+        #json-display::-webkit-scrollbar {
+    width: 12px;
 }
 
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 20vh;
-    padding: 1rem;
-}
-
-.box {
-    background: #0b060e;
-    border: 1px solid #0056b3;
-    border-radius: 5px;
-    width: 30%;
-    min-width: 250px;
-    padding: 1rem;
-    text-align: center;
-    word-wrap: break-word;
-    margin: 20px;
-}
-
-.big-text {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #ffffff;
-}
-
-.normal-text {
-    font-size: 1rem;
-    color: #ffffff;
-    margin: 0.5rem 0;
-}
-
-.box-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 1rem;
-    gap: 0.5rem;
-}
-
-button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    background: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 0.5rem;
-    flex: 1 1 auto;
-    max-width: 150px;
-}
-
-button:hover {
-    background: #0056b3;
-}
-
-#json-display {
+#json-display::-webkit-scrollbar-track {
     background: #000000;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 1rem;
-    margin: 1rem auto;
-    width: 90%;
-    height: 250px;
-    overflow: auto;
-    white-space: pre-wrap;
-    word-wrap: break-word;
 }
 
-#json-display-buttons {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
+#json-display::-webkit-scrollbar-thumb {
+    background: #00ffcc;
+    border-radius: 6px;
 }
 
-.notification {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    background: #333;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    opacity: 0;
-    transition: opacity 0.5s;
-}
-
-.notification.show {
-    opacity: 1;
-}
-
-.notification.error {
-    background: #d9534f;
-}
-
-@media (max-width: 1024px) {
-    .container {
-        gap: 0.75rem;
-        display: flex;
-        flex-direction: column;
-    }
-    .box {
-        width: 45%; 
-    }
+#json-display::-webkit-scrollbar-thumb:hover {
+    background: #00ffcc;
 }
 
 
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .box {
-        width: 100%; 
-    }
+            .box {
+                width: 80%;
+            }
 
-    #json-display {
-        width: 95%;
-        height: auto;
-        max-height: 300px;
-    }
-
-    button {
-        font-size: 0.9rem;
-        padding: 0.4rem 0.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .big-text {
-        font-size: 1.2rem;
-    }
-
-    .normal-text {
-        font-size: 0.9rem;
-    }
-
-    button {
-        font-size: 0.8rem;
-        padding: 0.3rem 0.6rem;
-    }
-
-    #json-display {
-        padding: 10px;
-    }
-}
-
-
-</style>
+            #json-display {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <div class="container">
         <div class="box" id="box1">
@@ -221,7 +270,9 @@ button:hover {
                 boxJSON[`box${boxNumber}`] = data;
 
                 const display = document.getElementById('json-display');
-                display.textContent = JSON.stringify(data, null, 2); // Show exact JSON from file
+                display.textContent = JSON.stringify(data, null, 2);
+                display.style.display = "block"; // Show JSON
+
                 showNotification(`JSON for Box ${boxNumber} loaded successfully!`);
             } catch (error) {
                 boxJSON[`box${boxNumber}`] = { error: `Failed to load JSON from ${jsonPaths[boxNumber - 1]}: ${error.message}` };
