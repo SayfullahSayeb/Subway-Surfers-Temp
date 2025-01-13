@@ -3,144 +3,210 @@
 
 <head>
   <meta charset="UTF-8">
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-
-  header {
-    color: #fff;
-    text-align: center;
-  }
-
-  h1 {
-    margin: 0;
-  }
-
-  p {
-    margin: 0;
-    font-size: 1.2rem;
-  }
-
-  form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 1rem;
-  }
-
-  fieldset {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin: 1rem;
-    padding: 1rem;
-  }
-
-  legend {
-    font-weight: bold;
-  }
-
-  .input-group {
-    display: flex;
-    align-items: center;
-    margin: 0.5rem 0;
-  }
-
-  label {
-    font-weight: bold;
-    width: 150px;
-  }
-
-  input {
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-  }
-
-  button {
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    background-color: #333;
-    color: #fff;
-    cursor: pointer;
-    display: block;
-margin: 0 auto;
-padding: 10px 20px;
-  }
-
-  button:hover {
-    background-color: #555;
-  }
-
-  textarea {
-    width: 90%;
-    height: 200px;
-    margin: 1rem;
-    padding: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    resize: none;
-  }
-
-  .input-group input {
-    border: 1px solid #ccc;
-  }
-
-  @media (max-width: 1024px) {
-    form {
-      flex-direction: column;
-      align-items: center;
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #0e0e0e;
+      color: #ffffff;
     }
 
-    fieldset {
-      width: 90%;
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #00ffcc;
+      text-shadow: 0px 0px 15px #00ffcc;
+    }
+
+    header p {
+      font-size: 1rem;
+      color: #aaaaaa;
+    }
+
+    .input-group {
+      margin: 15px 0;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .input-group label {
+      margin-bottom: 5px;
+      font-size: 1rem;
+      color: #ffffff;
+    }
+
+    .input-group input {
+      background: #121212;
+      border: 1px solid #333333;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 1rem;
+      color: #ffffff;
+      outline: none;
+      transition: border 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .input-group input:focus {
+      border-color: #00ffcc;
+      box-shadow: 0px 0px 10px #00ffcc;
     }
 
     button {
-      width: 100%;
-      max-width: 300px;
+      background-color: #00ffcc;
+      color: #000000;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      margin: 10px 10px; /* Added margin for spacing */
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0px 0px 10px #00ffcc;
+    }
+
+    button:hover {
+      background-color: #009977;
+      box-shadow: 0px 0px 15px #009977;
+      color: #ffffff;
+    }
+
+    button:active {
+      transform: scale(0.95);
     }
 
     textarea {
-      width: 95%;
+      width: 90%;
+      height: 150px;
+      background: #121212;
+      border: 1px solid #333333;
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 1rem;
+      resize: none;
+      display: none;
+      margin: 20px auto;
     }
-  }
 
-  @media (max-width: 768px) {
-    fieldset {
-      margin: 1rem 0.5rem;
-      padding: 0.5rem;
+    textarea:focus {
+      border-color: #00ffcc;
+      box-shadow: 0px 0px 10px #00ffcc;
     }
 
-    .
-</style>
+    .warning-box {
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid #f59e0b;
+      border-radius: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .info-box {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid #10b981;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    textarea::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    textarea::-webkit-scrollbar-track {
+      background: #000000;
+    }
+
+    textarea::-webkit-scrollbar-thumb {
+      background: #00ffcc;
+      border-radius: 6px;
+    }
+
+    textarea::-webkit-scrollbar-thumb:hover {
+      background: #00ffcc;
+    }
+
+    /* Notification Style */
+    .notification {
+      display: none;
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background-color: #00ffcc;
+      color: #000000;
+      padding: 10px;
+      border-radius: 5px;
+      font-size: 1rem;
+      box-shadow: 0px 0px 15px #00ffcc;
+      z-index: 1000;
+    }
+  </style>
 </head>
 
 <body>
-  <header>
-    <h1>Rop Run</h1>
-    <p>Enter the current score and click generate </p>
-  </header>
-
-  <form id="jsonForm">
-    <fieldset>
-      <div class="input-group">
-        <label for="currentScore">Current Score:</label>
-        <input id="currentScore" name="currentScore" type="number" min="1" required>
+  <div class="container">
+    <header>
+      <h1>Rop Run</h1>
+      <p>Enter the current score and click generate</p>
+      <div class="warning-box">
+        <p>Insert values that you want in Subway Surf 🎮</p>
+        <p class="warning"><b>⚠️ Please always backup all gameplay data.</b></p>
       </div>
-    </fieldset>
-  </form>
+      <div class="info-box">
+        <p>📁 Put this file in Android/data/com.kiloo.subwaysurf/files/profile/</p>
+      </div>
+    </header>
 
-  
-  <button type="button" onclick="generateJSON()">Generate JSON</button>
+    <div class="input-group">
+      <label for="currentScore">Current Score:</label>
+      <input id="currentScore" name="currentScore" type="number" min="1" required oninput="enableSubmit()">
+    </div>
 
-  <textarea id="jsonOutput" readonly placeholder="Generated JSON will appear here..."></textarea>
+    <!-- Buttons -->
+    <div class="button-container">
+      <button id="generateRandomButton" type="button" onclick="generateRandomScore()">Generate Random</button>
+      <button id="submitButton" type="button" onclick="generateJSON()" disabled>Submit</button>
+      <button id="copyButton" type="button" onclick="copyJSON()">Copy</button>
+      <button id="downloadButton" type="button" onclick="downloadJSON()">Download File</button>
+    </div>
+
+    <textarea id="jsonOutput" readonly placeholder="Generated JSON will appear here..."></textarea>
+  </div>
+
+  <div id="copyNotification" class="notification">JSON copied to clipboard!</div>
 
   <script>
+    // Enable submit button when user inputs a value
+    function enableSubmit() {
+      const currentScore = document.getElementById('currentScore').value;
+      const submitButton = document.getElementById('submitButton');
+      submitButton.disabled = !currentScore;
+    }
+
+    // Generate Random Score (within a certain range)
+    function generateRandomScore() {
+      const randomScore = Math.floor(Math.random() * 1000000);  // Generates a random score between 0 and 1,000,000
+      document.getElementById('currentScore').value = randomScore;
+      enableSubmit(); // Re-enable the submit button
+    }
+
+    // Generate JSON
     function generateJSON() {
       const currentScore = parseInt(document.getElementById('currentScore').value) || 0;
 
@@ -171,7 +237,37 @@ padding: 10px 20px;
         })
       };
 
-      document.getElementById('jsonOutput').value = JSON.stringify(json, null, 2);
+      // Show the generated JSON in textarea
+      const jsonOutput = document.getElementById('jsonOutput');
+      jsonOutput.style.display = 'block';  // Make the textarea visible
+      jsonOutput.value = JSON.stringify(json, null, 2);
+    }
+
+    // Copy JSON to Clipboard
+    function copyJSON() {
+      const jsonOutput = document.getElementById('jsonOutput');
+      jsonOutput.select();
+      jsonOutput.setSelectionRange(0, 99999); // For mobile devices
+      document.execCommand('copy');
+      
+      // Show notification
+      const notification = document.getElementById('copyNotification');
+      notification.style.display = 'block';
+
+      // Hide notification after 3 seconds
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 3000);
+    }
+
+    // Download JSON as a .json file
+    function downloadJSON() {
+      const jsonOutput = document.getElementById('jsonOutput').value;
+      const blob = new Blob([jsonOutput], { type: 'application/json' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'rop_run_data.json';
+      link.click();
     }
   </script>
 </body>

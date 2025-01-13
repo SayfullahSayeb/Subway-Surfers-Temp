@@ -73,7 +73,7 @@ textarea::-webkit-scrollbar { width: 12px; } textarea::-webkit-scrollbar-track {
       <div class="currency-group">
         <div class="currency-item">
           <img src="img/Jake.webp" alt="Jake Coins Icon">
-          <input type="number" id="currency20" class="currency-input" min="0" placeholder="Jake coins">
+          <input type="number" id="currency20" class="currency-input" placeholder="Jake coins">
         </div>
         <div class="currency-item">
           <img src="img/Fresh.webp" alt="Fresh Coins Icon">
@@ -160,19 +160,23 @@ textarea::-webkit-scrollbar { width: 12px; } textarea::-webkit-scrollbar-track {
     }
 
     function copyJSON() {
-      if (!isSubmitted) return;
+  if (!isSubmitted) return;
 
-      const jsonOutput = document.getElementById('jsonOutput');
-      jsonOutput.select();
-      document.execCommand('copy');
+  const jsonOutput = document.getElementById('jsonOutput');
+  jsonOutput.select();
+  document.execCommand('copy');
 
-      const alertBox = document.getElementById('copyAlert');
-      alertBox.classList.add('show');
-      setTimeout(() => {
-        alertBox.classList.remove('show');
-        alertBox.classList.add('hide');
-      }, 2000);
-    }
+  const alertBox = document.getElementById('copyAlert');
+  alertBox.classList.remove('hide', 'show');
+  void alertBox.offsetWidth;
+  alertBox.classList.add('show');
+
+  setTimeout(() => {
+    alertBox.classList.remove('show');
+    alertBox.classList.add('hide');
+  }, 2000);
+}
+
 
     function downloadJSON() {
       if (!isSubmitted) return;

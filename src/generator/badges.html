@@ -3,117 +3,192 @@
 
 <head>
   <meta charset="UTF-8">
-<style>
-body{font-family:Arial,sans-serif;margin:0;padding:0;background-color:#f9f9f9;color:#ffffff}
-header{text-align:center;padding:1rem 0;color:#ffffff}
-header h1{margin:0;font-size:2rem}
-header p{margin:0.5rem 0 0}
-form{max-width:800px;margin:20px auto;padding:20px;background:#374055;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.1)}
-fieldset{border:1px solid #ddd;border-radius:6px;padding:15px}
-legend{font-size:1.2rem;font-weight:bold}
-.input-group{display:flex;align-items:center;margin-bottom:15px}
-.input-group label{display:flex;align-items:center;width:150px;font-weight:bold;gap:10px}
-.input-group input{flex:1;padding:5px;font-size:1rem}
-.input-group img{width: 40px;height: 40px;object-fit: contain;border-radius: 50%;
-.btn-primary{display:block;width:200px;margin:20px auto;padding:10px 15px;font-size:1rem;background-color:#007bff;color:#fff;border:none;border-radius:4px;cursor:pointer;text-align:center}
-.btn-primary:hover{background-color:#0056b3}
-textarea{width:calc(100% - 40px);height:150px;margin:20px auto;padding:10px;font-size:1rem;border:1px solid #ccc;border-radius:4px;resize:none;display:block;background:#f4f4f4}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+body,html{margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;background-color:#0e0e0e;color:#ffffff}
+.container{display:flex;flex-direction:column;align-items:center;padding:20px}
+header{text-align:center;margin-bottom:20px}
+header h1{font-size:3rem;color:#00ffcc;text-shadow:0px 0px 15px #00ffcc}
+header p{font-size:1rem;color:#aaaaaa}
+.currency-panel{background-color:#1a1a1a;border-radius:10px;padding:20px;margin:20px 0;width:100%;max-width:800px;box-shadow:0px 0px 15px rgba(0,255,204,0.3)}
+.input-group{margin:15px 0;display:flex;align-items:center;width:100%}
+.input-group label{font-size:1rem;color:#ffffff;margin-right:10px}
+.input-group input{background:#121212;border:1px solid #333333;border-radius:8px;padding:10px;font-size:1rem;color:#ffffff;outline:none;transition:border 0.3s ease,box-shadow 0.3s ease;width:100%}
+.input-group input:focus{border-color:#00ffcc;box-shadow:0px 0px 10px #00ffcc}
+.input-group img{width:auto;height:40px;margin-right:10px}
+button{background-color:#00ffcc;color:#000000;border:none;border-radius:5px;padding:10px 20px;font-size:1.2rem;margin:10px;cursor:pointer;font-weight:bold;transition:all 0.3s ease;box-shadow:0px 0px 10px #00ffcc}
+button:hover{background-color:#009977;box-shadow:0px 0px 15px #009977;color:#ffffff}
+button:active{transform:scale(0.95)}
+textarea{width:90%;height:150px;background:#121212;border:1px solid #333333;color:#ffffff;border-radius:8px;padding:10px;font-size:1rem;resize:none;display:none;margin:20px auto}
+textarea:focus{border-color:#00ffcc;box-shadow:0px 0px 10px #00ffcc}
+.warning-box{background:rgba(245,158,11,0.1);border:1px solid #f59e0b;border-radius:0.5rem;margin:1rem 0}
+.info-box{background:rgba(16,185,129,0.1);border:1px solid #10b981;border-radius:0.5rem;padding:1rem;margin:1rem 0;text-align:center}
+.notification{display:none;position:fixed;top:10px;right:10px;background-color:#00ffcc;color:#000000;padding:10px;border-radius:5px;font-size:1rem;box-shadow:0px 0px 15px #00ffcc;z-index:1000}
+.input-box{display:flex;align-items:center;background:#121212;border-radius:8px;padding:10px;transition:all 0.3s ease;width:100%}
+.button-container{display:flex;justify-content:center;gap:15px}
+.high-score{width:100%}
+.input-boxes{display:flex;flex-wrap:nowrap;justify-content:space-between}
+.input-boxes .input-box{width:48%;margin-bottom:15px}
+textarea::-webkit-scrollbar{width:12px}
+textarea::-webkit-scrollbar-track{background:#000000}
+textarea::-webkit-scrollbar-thumb{background:#00ffcc;border-radius:6px}
+textarea::-webkit-scrollbar-thumb:hover{background:#00ffcc}
 @media (max-width:768px){
-.input-group label{flex:1 1 100%;text-align:left}
-.input-group input{flex:1 1 100%}
-form{padding:15px}
-.btn-primary{width:100%}
-textarea{width:calc(100% - 30px)}
+.input-boxes .input-box{width:100%;margin-bottom:10px}
+.input-boxes{display:flex;flex-wrap:wrap;justify-content:space-between}
+.button-container{flex-direction:column;align-items:center}
+button{width:100%;margin:5px 0}
+.currency-panel{padding:15px}
+textarea{width:90%;height:120px}
 }
 @media (max-width:480px){
-fieldset{padding:10px}
-legend{font-size:1rem}
-.input-group{gap:0.5rem}
-.btn-primary{padding:8px 12px}
+header h1{font-size:2rem}
+.input-group input{font-size:0.9rem;padding:8px}
+button{font-size:1rem;padding:8px 16px}
 }
-
-</style>
+  </style>
 </head>
 
 <body>
-  <header>
-    <h1>Badges</h1>
-    <p>Enter values each field and click generate</p>
-  </header>
-
-  <form id="profileForm">
-    <fieldset>
-      <legend>Game Data</legend>
-  
-      <div class="input-group">
+  <div class="container">
+    <header>
+      <h1>Badges</h1>
+      <p>Enter values for each field and click generate</p>
+      <div class="warning-box">
+        <p>Insert values that you want in Subway Surf 🎮</p>
+        <p class="warning"><b>⚠️ Please always backup all gameplay data.</b></p>
+      </div>
+      <div class="info-box">
+        <p>📁 Put this file in Android/data/com.kiloo.subwaysurf/files/profile/</p>
+      </div>
+    </header>
+    
+    <div class="currency-panel">
+      <!-- High Score (Full width) -->
+      <div class="input-group high-score">
         <label for="highScore">High Score:</label>
-        <input id="highScore" name="highScore" type="number" min="1" max="2147483647" required>
+        <input id="highScore" name="highScore" type="number" min="1" max="2147483647" placeholder="High Score" required oninput="enableSubmit()">
       </div>
-  
-      <div class="input-group">
-        <label for="bronze">
-          <img src="img/bronze.png" alt="Bronze"> Bronze:
-        </label>
-        <input id="bronze" name="bronze" type="number" min="1" max="2147483647" required>
-      </div>
-  
-      <div class="input-group">
-        <label for="silver">
-          <img src="img/silver.png" alt="Silver"> Silver:
-        </label>
-        <input id="silver" name="silver" type="number" min="1" max="2147483647" required>
-      </div>
-  
-      <div class="input-group">
-        <label for="gold">
-          <img src="img/gold.png" alt="Gold"> Gold:
-        </label>
-        <input id="gold" name="gold" type="number" min="1" max="2147483647" required>
-      </div>
-  
-      <div class="input-group">
-        <label for="diamond">
-          <img src="img/diamond.png" alt="Diamond"> Diamond:
-        </label>
-        <input id="diamond" name="diamond" type="number" min="1" max="2147483647" required>
-      </div>
-  
-      <div class="input-group">
-        <label for="champ">
-          <img src="img/champ.png" alt="Champ"> Champ:
-        </label>
-        <input id="champ" name="champ" type="number" min="1" max="2147483647" required>
-      </div>
-    </fieldset>
-  </form>
-  
-  
-      <button type="button" class="btn-primary" onclick="generateJSON()">Generate JSON</button>
 
-  <textarea id="jsonOutput" readonly placeholder="Generated JSON will appear here..."></textarea>
+      <!-- Other 5 fields (2 columns) -->
+      <div class="input-boxes">
+        <div class="input-box">
+          <div class="input-group">
+            <img src="img/bronze.png" alt="Bronze">
+            <input id="bronze" name="bronze" type="number" min="1" max="2147483647" placeholder="Bronze" required oninput="enableSubmit()">
+          </div>
+        </div>
+        <div class="input-box">
+          <div class="input-group">
+            <img src="img/silver.png" alt="Silver">
+            <input id="silver" name="silver" type="number" min="1" max="2147483647" placeholder="Silver" required oninput="enableSubmit()">
+          </div>
+        </div>
+        <div class="input-box">
+          <div class="input-group">
+            <img src="img/gold.png" alt="Gold">
+            <input id="gold" name="gold" type="number" min="1" max="2147483647" placeholder="Gold" required oninput="enableSubmit()">
+          </div>
+        </div>
+        <div class="input-box">
+          <div class="input-group">
+            <img src="img/diamond.png" alt="Diamond">
+            <input id="diamond" name="diamond" type="number" min="1" max="2147483647" placeholder="Diamond" required oninput="enableSubmit()">
+          </div>
+        </div>
+        <div class="input-box">
+          <div class="input-group">
+            <img src="img/champ.png" alt="Champ">
+            <input id="champ" name="champ" type="number" min="1" max="2147483647" placeholder="Champ" required oninput="enableSubmit()">
+          </div>
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="button-container">
+        <button type="button" onclick="generateRandomValues()">Generate Random</button>
+        <button id="submitButton" type="button" onclick="generateJSON()" disabled>Submit</button>
+        <button id="copyButton" type="button" onclick="copyJSON()">Copy</button>
+        <button id="downloadButton" type="button" onclick="downloadJSON()">Download File</button>
+      </div>
+
+      <textarea id="jsonOutput" readonly placeholder="Generated JSON will appear here..."></textarea>
+    </div>
+
+    <div id="copyNotification" class="notification">JSON copied to clipboard!</div>
+  </div>
 
   <script>
+    function enableSubmit() {
+      const inputs = document.querySelectorAll('.input-group input');
+      const submitButton = document.getElementById('submitButton');
+      const isValid = Array.from(inputs).every(input => input.value.trim() !== "");
+      submitButton.disabled = !isValid;
+    }
+
+    function generateRandomValues() {
+      const randomScore = Math.floor(Math.random() * 1000000);  
+      document.getElementById('highScore').value = randomScore; 
+      document.getElementById('bronze').value = Math.floor(Math.random() * 100);
+      document.getElementById('silver').value = Math.floor(Math.random() * 100);
+      document.getElementById('gold').value = Math.floor(Math.random() * 100);
+      document.getElementById('diamond').value = Math.floor(Math.random() * 100);
+      document.getElementById('champ').value = Math.floor(Math.random() * 100);
+      enableSubmit();
+    }
+
+    // Generate JSON
     function generateJSON() {
-      const form = document.getElementById('profileForm');
-      const data = new FormData(form);
+      const bronze = parseInt(document.getElementById('bronze').value) || 0;
+      const silver = parseInt(document.getElementById('silver').value) || 0;
+      const gold = parseInt(document.getElementById('gold').value) || 0;
+      const diamond = parseInt(document.getElementById('diamond').value) || 0;
+      const champ = parseInt(document.getElementById('champ').value) || 0;
+      const highScore = parseInt(document.getElementById('highScore').value) || 0;
+
       const json = {
         version: 2,
         data: JSON.stringify({
           lastSaved: "0001-01-01T00:00:00Z",
           lastIAPDate: "0001-01-01T00:00:00Z",
-          highScoreCollection: { default: parseInt(data.get('highScore')) || 0 },
+          highScoreCollection: { default: highScore },
           userStatCollection: {
-            102: parseInt(data.get('champ')) || 0,
-            103: parseInt(data.get('diamond')) || 0,
-            104: parseInt(data.get('gold')) || 0,
-            105: parseInt(data.get('silver')) || 0,
-            106: parseInt(data.get('bronze')) || 0
+            102: champ,
+            103: diamond,
+            104: gold,
+            105: silver,
+            106: bronze
           }
         })
       };
 
       const output = document.getElementById('jsonOutput');
+      output.style.display = 'block';  
       output.value = JSON.stringify(json, null, 2);
+    }
+
+    function copyJSON() {
+      const jsonOutput = document.getElementById('jsonOutput');
+      jsonOutput.select();
+      document.execCommand('copy');
+      showNotification();
+    }
+
+    // Show copy notification
+    function showNotification() {
+      const notification = document.getElementById('copyNotification');
+      notification.style.display = 'block';
+      setTimeout(() => notification.style.display = 'none', 2000);
+    }
+
+    // Download JSON as file
+    function downloadJSON() {
+      const jsonOutput = document.getElementById('jsonOutput').value;
+      const blob = new Blob([jsonOutput], { type: 'application/json' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'subway_surf_badges.json';
+      link.click();
     }
   </script>
 </body>
