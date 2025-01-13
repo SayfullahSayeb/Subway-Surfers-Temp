@@ -6,7 +6,7 @@
   <style>
 body,html{margin:0;padding:0;font-family:Arial, Helvetica, sans-serif ;background-color:#0e0e0e;color:#ffffff}
 .container{display:flex;flex-direction:column;align-items:center;padding:20px}
-header{text-align:center;margin-bottom:20px}
+header{text-align:center;}
 header h1{font-size:3rem;color:#00ffcc;text-shadow:0px 0px 15px #00ffcc}
 .currency-panel{background-color:#1a1a1a;border-radius:10px;padding:20px;margin:20px 0;width:100%;max-width:600px;box-shadow:0px 0px 15px rgba(0,255,204,0.3)}
 .currency-group{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px;margin-bottom:20px}
@@ -18,7 +18,21 @@ header h1{font-size:3rem;color:#00ffcc;text-shadow:0px 0px 15px #00ffcc}
 .glow-button{background-color:#00ffcc;color:#000000;border:none;border-radius:5px;padding:10px 20px;font-size:1.2rem;margin:10px;cursor:pointer;font-weight:bold;transition:all 0.3s ease;box-shadow:0px 0px 10px #00ffcc}
 .glow-button:hover{background-color:#009977;box-shadow:0px 0px 15px #009977;color:#ffffff}
 button:active{transform:scale(0.95)}
-textarea{width:90%;height:150px;background:#121212;border:1px solid #333333;color:#ffffff;border-radius:8px;padding:10px;font-size:1rem;resize:none;display:block;margin:0 auto;display:none;} /* Hide by default */
+textarea{background-color: #121212;
+color: #00ffcc;
+padding: 20px;
+border-radius: 8px;
+font-family: monospace;
+white-space: pre-wrap;
+word-wrap: break-word;
+width: 90%;
+height: 150px;
+overflow-y: auto;
+position: relative;
+margin: 0 auto;
+resize: none;
+display: none;
+} 
 #copyAlert{position:fixed;bottom:20px;right:20px;background-color:#00ffcc;color:#000000;font-size:1rem;padding:10px 20px;border-radius:5px;box-shadow:0px 0px 15px rgba(0,255,204,0.5);opacity:0;transition:opacity 0.5s ease,transform 0.3s ease;transform:translateY(20px);z-index:1000}
 #copyAlert.show{opacity:1;transform:translateY(0)}
 #copyAlert.hide{opacity:0;transform:translateY(20px)}
@@ -32,8 +46,7 @@ textarea::-webkit-scrollbar { width: 12px; } textarea::-webkit-scrollbar-track {
     <header>
       <h1>Wallet</h1>
       <div class="warning-box">
-        <p>Insert values that you want in Subway Surf 🎮</p>
-        <p class="warning"><b>⚠️ Please always backup all gameplay data.</b></p>
+        <p class="warning"><b>⚠️ Don't forget to backup your gameplay data!</b></p>
       </div>
       <div class="info-box">
         <p>📁 Put this file in Android/data/com.kiloo.subwaysurf/files/profile/</p>
@@ -41,6 +54,7 @@ textarea::-webkit-scrollbar { width: 12px; } textarea::-webkit-scrollbar-track {
 
     </header>
 
+    <p>Insert values that you want in Subway Surf 🎮</p>
     <div class="currency-panel">
       <div class="currency-group">
         <div class="currency-item">
@@ -97,8 +111,10 @@ textarea::-webkit-scrollbar { width: 12px; } textarea::-webkit-scrollbar-track {
         <button type="button" onclick="generateRandomNumbers()" class="glow-button">Generate Random</button>
         <button type="button" onclick="generateJSON()" class="glow-button">Submit</button>
         <button type="button" onclick="copyJSON()" id="copyButton" class="glow-button" disabled>Copy</button>
-        <button type="button" onclick="downloadJSON()" id="downloadButton" class="glow-button" disabled>Download File</button>
+        <button type="button" onclick="downloadJSON()" id="downloadButton" class="glow-button" disabled>Download</button>
       </div>
+
+      <p>File Name: wallet.json</p>
 
       <div id="copyAlert">JSON copied to clipboard!</div>
 
@@ -110,11 +126,18 @@ textarea::-webkit-scrollbar { width: 12px; } textarea::-webkit-scrollbar-track {
     let isSubmitted = false;
 
     function generateRandomNumbers() {
-      const max = 2147483647;
-      document.querySelectorAll('input[type="number"]').forEach(input => {
+    const max = 2147483647;
+    const minLimited = 100, maxLimited = 5000;
+
+    document.querySelectorAll('input[type="number"]').forEach(input => {
+      const id = input.id;
+      if (["currency20", "currency21", "currency22", "currency23", "currency24"].includes(id)) {
+        input.value = Math.floor(Math.random() * (maxLimited - minLimited + 1)) + minLimited;
+      } else {
         input.value = Math.floor(Math.random() * max);
-      });
-    }
+      }
+    });
+  }
 
     function generateJSON() {
       const currencies = {

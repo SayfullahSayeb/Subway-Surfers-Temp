@@ -5,21 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON File Generator</title>
     <style>
+        :root {
+            --dark-bg: #121212;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+
         .container {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-direction: column; /* Stacks .warning-box and .info-box vertically */
+            align-items: center;
             gap: 20px;
             padding: 2rem;
             background: var(--dark-bg);
             border-radius: 20px;
-            box-shadow: 0 0 20px rgba(176, 38, 255, 0.2);
+            box-shadow: 0 0 20px rgba(176,38,255,0.2);
             backdrop-filter: blur(10px);
             position: relative;
             z-index: 1;
         }
 
-        /* Individual box styling */
+        .box-container {
+            display: flex;
+            justify-content: center; /* Center the boxes horizontally */
+            gap: 20px; /* Spacing between the boxes */
+            flex-wrap: wrap; /* Allows wrapping if the screen is too small */
+            width: 100%; /* Ensures it spans the full width of the container */
+        }
+
+        .warning-box{background:rgba(245,158,11,0.1);border:1px solid #f59e0b;border-radius:0.5rem; text-align: center;}
+        .info-box{background:rgba(16,185,129,0.1);border:1px solid #10b981;border-radius:0.5rem;padding:0.5rem;margin:1rem 0;text-align:center}
+
         .box {
             background-color: #1f1f1f;
             border-radius: 10px;
@@ -28,7 +50,6 @@
             text-align: center;
             transition: all 0.3s ease;
             width: 250px;
-            margin: 10px;
             word-wrap: break-word;
         }
 
@@ -37,20 +58,19 @@
             transform: scale(1.05);
         }
 
-        .big-text {
+        h1 {
             font-size: 1.8rem;
             font-weight: bold;
             color: #00ffcc;
             margin-bottom: 10px;
         }
 
-        .normal-text {
+        p {
             font-size: 1rem;
-            color: #aaaaaa;
+            color: #ffffff;
             margin-bottom: 20px;
         }
 
-        /* Buttons within each box */
         .box-buttons {
             display: flex;
             justify-content: center;
@@ -77,75 +97,6 @@
             transform: scale(0.95);
         }
 
-        /* JSON Display styling */
-        #json-display {
-            background-color: #121212;
-            color: #00ffcc;
-            padding: 20px;
-            margin-top: 20px;
-            border-radius: 8px;
-            font-family: monospace;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            width: 90%;
-            max-width: 1000px;
-            height: 300px; /* Fixed height */
-            overflow-y: auto; /* Scroll when content exceeds height */
-            position: relative;
-            margin: 0 auto;
-        }
-
-        /* Copy button inside JSON display box */
-        #copy-btn {
-            background-color: #00ffcc;
-            color: #000;
-            padding: 8px 15px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        #copy-btn:hover {
-            background-color: #009977;
-            transform: scale(1.05);
-        }
-
-        #copy-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* Buttons below JSON display */
-        #json-display-buttons {
-            margin-top: 10px;
-            text-align: center;
-        }
-
-        #json-display-buttons button {
-            background-color: #00ffcc;
-            color: #000;
-            padding: 10px 20px;
-            font-size: 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        #json-display-buttons button:hover {
-            background-color: #009977;
-            transform: scale(1.05);
-        }
-
-        #json-display-buttons button:active {
-            transform: scale(0.95);
-        }
-
-        /* Notification styling */
         .notification {
             position: fixed;
             top: 20px;
@@ -170,76 +121,49 @@
             background-color: #f59e0b;
             color: #000;
         }
-
-        #json-display::-webkit-scrollbar {
-    width: 12px;
-}
-
-#json-display::-webkit-scrollbar-track {
-    background: #000000;
-}
-
-#json-display::-webkit-scrollbar-thumb {
-    background: #00ffcc;
-    border-radius: 6px;
-}
-
-#json-display::-webkit-scrollbar-thumb:hover {
-    background: #00ffcc;
-}
-
-
-        /* Mobile responsiveness */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-            }
-
-            .box {
-                width: 80%;
-            }
-
-            #json-display {
-                width: 100%;
-            }
-        }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="box" id="box1">
-            <div class="big-text">All Characters</div>
-            <div class="normal-text">Put this file in Android/data/com.kiloo.subwaysurf/files/profile/characters_inventory.json</div>
-            <div class="box-buttons">
-                <button onclick="generateBoxJSON(1)">Generate</button>
-                <button onclick="downloadBoxJSON(1)">Download</button>
+        <header>
+            <div class="warning-box">
+              <p class="warning"><b>⚠️ Don't forget to backup your gameplay data!</b></p>
             </div>
-        </div>
-        <div class="box" id="box2">
-            <div class="big-text">All Hoverboards</div>
-            <div class="normal-text">Put this file in Android/data/com.kiloo.subwaysurf/files/profile/boards_inventory.json</div>
-            <div class="box-buttons">
-                <button onclick="generateBoxJSON(2)">Generate</button>
-                <button onclick="downloadBoxJSON(2)">Download</button>
+            <div class="info-box">
+              <p>📁 Put this file in Android/data/com.kiloo.subwaysurf/files/profile/</p>
             </div>
-        </div>
-        <div class="box" id="box3">
-            <div class="big-text">All Portraits</div>
-            <div class="normal-text">Put this file in Android/data/com.kiloo.subwaysurf/files/profile/profile_portrait.json</div>
-            <div class="box-buttons">
-                <button onclick="generateBoxJSON(3)">Generate</button>
-                <button onclick="downloadBoxJSON(3)">Download</button>
+          </header>
+
+        <!-- Boxes -->
+        <div class="box-container">
+            <div class="box" id="box1">
+                <h1>All Characters</h1>
+                <p>Put this file in Android/data/com.kiloo.subwaysurf/files/profile/characters_inventory.json</p>
+                <div class="box-buttons">
+                    <button onclick="copyBoxJSON(1)">Copy</button>
+                    <button onclick="downloadBoxJSON(1)">Download</button>
+                </div>
+            </div>
+            <div class="box" id="box2">
+                <h1>All Hoverboards</h1>
+                <p>Put this file in Android/data/com.kiloo.subwaysurf/files/profile/boards_inventory.json</p>
+                <div class="box-buttons">
+                    <button onclick="copyBoxJSON(2)">Copy</button>
+                    <button onclick="downloadBoxJSON(2)">Download</button>
+                </div>
+            </div>
+            <div class="box" id="box3">
+                <h1>All Portraits</h1>
+                <p>Put this file in Android/data/com.kiloo.subwaysurf/files/profile/profile_portrait.json</p>
+                <div class="box-buttons">
+                    <button onclick="copyBoxJSON(3)">Copy</button>
+                    <button onclick="downloadBoxJSON(3)">Download</button>
+                </div>
             </div>
         </div>
     </div>
 
-    <div id="json-display"></div>
-    <div id="json-display-buttons">
-        <button onclick="copyJSON()">Copy JSON</button>
-    </div>
     <div id="notification" class="notification"></div>
 
     <script>
@@ -249,7 +173,11 @@
             'json/profile_portrait.json'
         ];
 
-        const boxJSON = {};
+        const boxNotifications = [
+            "All Characters code is copied",
+            "All Hoverboards code is copied",
+            "All Portraits code is copied"
+        ];
 
         function showNotification(message, isError = false) {
             const notification = document.getElementById('notification');
@@ -260,47 +188,38 @@
             }, 3000);
         }
 
-        async function generateBoxJSON(boxNumber) {
+        async function copyBoxJSON(boxNumber) {
             try {
                 const response = await fetch(jsonPaths[boxNumber - 1]);
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 const data = await response.json();
-                boxJSON[`box${boxNumber}`] = data;
-
-                const display = document.getElementById('json-display');
-                display.textContent = JSON.stringify(data, null, 2);
-                display.style.display = "block"; // Show JSON
-
-                showNotification(`JSON for Box ${boxNumber} loaded successfully!`);
+                navigator.clipboard.writeText(JSON.stringify(data, null, 2))
+                    .then(() => showNotification(boxNotifications[boxNumber - 1]))
+                    .catch(err => showNotification(`Failed to copy JSON: ${err.message}`, true));
             } catch (error) {
-                boxJSON[`box${boxNumber}`] = { error: `Failed to load JSON from ${jsonPaths[boxNumber - 1]}: ${error.message}` };
-                showNotification(`Error for Box ${boxNumber}: ${error.message}`, true);
+                showNotification(`Error fetching JSON for Box ${boxNumber}: ${error.message}`, true);
             }
         }
 
-        function copyJSON() {
-            const jsonToCopy = document.getElementById('json-display').textContent;
-            navigator.clipboard.writeText(jsonToCopy).then(() => {
-                showNotification(`JSON copied to clipboard!`);
-            }).catch(err => {
-                showNotification(`Failed to copy JSON: ${err.message}`, true);
-            });
-        }
-
-        function downloadBoxJSON(boxNumber) {
+        async function downloadBoxJSON(boxNumber) {
             try {
-                const blob = new Blob([JSON.stringify(boxJSON[`box${boxNumber}`], null, 2)], { type: 'application/json' });
+                const response = await fetch(jsonPaths[boxNumber - 1]);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = jsonPaths[boxNumber - 1].split('/').pop(); // Use original filename
+                a.download = jsonPaths[boxNumber - 1].split('/').pop();
                 a.click();
                 URL.revokeObjectURL(url);
-                showNotification(`JSON file downloaded successfully!`);
-            } catch (err) {
-                showNotification(`Failed to download JSON: ${err.message}`, true);
+                showNotification(`JSON file for Box ${boxNumber} downloaded successfully!`);
+            } catch (error) {
+                showNotification(`Error downloading JSON for Box ${boxNumber}: ${error.message}`, true);
             }
         }
     </script>
