@@ -33,7 +33,7 @@
 
     header p {
       font-size: 1rem;
-      color: #aaaaaa;
+      color: #ffffff;
     }
 
     .input-group {
@@ -91,17 +91,22 @@
     }
 
     textarea {
-      width: 90%;
-      height: 150px;
       background: #121212;
-      border: 1px solid #333333;
-      color: #ffffff;
-      border-radius: 8px;
-      padding: 10px;
-      font-size: 1rem;
-      resize: none;
-      display: none;
-      margin: 20px auto;
+            color: #00ffcc;
+            width: 80%;
+            max-width: 800px;
+            height: 150px;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: monospace;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            display: none;
+            overflow: auto; 
+            resize: none;
+            box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+            border: none;
     }
 
     textarea:focus {
@@ -120,7 +125,7 @@
       background: rgba(16, 185, 129, 0.1);
       border: 1px solid #10b981;
       border-radius: 0.5rem;
-      padding: 1rem;
+      padding: 0.5rem;
       margin: 1rem 0;
       text-align: center;
     }
@@ -163,9 +168,7 @@
   <div class="container">
     <header>
       <h1>Rop Run</h1>
-      <p>Enter the current score and click generate</p>
       <div class="warning-box">
-        <p>Insert values that you want in Subway Surf 🎮</p>
         <p class="warning"><b>⚠️ Please always backup all gameplay data.</b></p>
       </div>
       <div class="info-box">
@@ -174,7 +177,7 @@
     </header>
 
     <div class="input-group">
-      <label for="currentScore">Current Score:</label>
+      <label for="currentScore">Enter TopRun score and click generate</label>
       <input id="currentScore" name="currentScore" type="number" min="1" required oninput="enableSubmit()">
     </div>
 
@@ -185,6 +188,9 @@
       <button id="copyButton" type="button" onclick="copyJSON()">Copy</button>
       <button id="downloadButton" type="button" onclick="downloadJSON()">Download File</button>
     </div>
+
+    <p>File Name: wallet.json</p>
+
 
     <textarea id="jsonOutput" readonly placeholder="Generated JSON will appear here..."></textarea>
   </div>
