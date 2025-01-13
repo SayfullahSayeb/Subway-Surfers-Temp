@@ -9,7 +9,7 @@ body,html{margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;background-c
 .container{display:flex;flex-direction:column;align-items:center;padding:20px}
 header{text-align:center;margin-bottom:20px}
 header h1{font-size:3rem;color:#00ffcc;text-shadow:0px 0px 15px #00ffcc}
-header p{font-size:1rem;color:#aaaaaa}
+header p{font-size:1rem;color:#ffffff}
 .currency-panel{background-color:#1a1a1a;border-radius:10px;padding:20px;margin:20px 0;width:100%;max-width:800px;box-shadow:0px 0px 15px rgba(0,255,204,0.3)}
 .input-group{margin:15px 0;display:flex;align-items:center;width:100%}
 .input-group label{font-size:1rem;color:#ffffff;margin-right:10px}
@@ -19,23 +19,28 @@ header p{font-size:1rem;color:#aaaaaa}
 button{background-color:#00ffcc;color:#000000;border:none;border-radius:5px;padding:10px 20px;font-size:1.2rem;margin:10px;cursor:pointer;font-weight:bold;transition:all 0.3s ease;box-shadow:0px 0px 10px #00ffcc}
 button:hover{background-color:#009977;box-shadow:0px 0px 15px #009977;color:#ffffff}
 button:active{transform:scale(0.95)}
-textarea{width:90%;height:150px;background:#121212;border:1px solid #333333;color:#ffffff;border-radius:8px;padding:10px;font-size:1rem;resize:none;display:none;margin:20px auto}
+textarea {
+      background: #121212;
+      color: #00ffcc;
+      width: calc(100% - 40px);
+      max-width: 100%;
+      height: 100px;
+      padding: 20px;
+      border-radius: 8px;
+      font-family: monospace;
+      margin-top: 20px;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      display: none;
+      overflow: auto;
+      resize: none;
+      box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
+      border: none;
+    }
 textarea:focus{border-color:#00ffcc;box-shadow:0px 0px 10px #00ffcc}
 .warning-box{background:rgba(245,158,11,0.1);border:1px solid #f59e0b;border-radius:0.5rem;margin:1rem 0}
-.info-box{background:rgba(16,185,129,0.1);border:1px solid #10b981;border-radius:0.5rem;padding:1rem;margin:1rem 0;text-align:center}
-.notification {
-  display: none;
-  position: fixed;
-  top: 20px; /* Adjust top for better placement */
-  right: 20px; /* Ensure it's on the right side */
-  background-color: #00ffcc;
-  color: #000000;
-  padding: 10px;
-  border-radius: 5px;
-  font-size: 1rem;
-  box-shadow: 0px 0px 15px #00ffcc;
-  z-index: 1000;
-}
+.info-box{background:rgba(16,185,129,0.1);border:1px solid #10b981;border-radius:0.5rem;padding:0.5rem;margin:1rem 0;text-align:center}
+.notification{display:none;position:fixed;top:20px;right:20px;background-color:#00ffcc;color:#000000;padding:10px;border-radius:5px;font-size:1rem;box-shadow:0px 0px 15px #00ffcc;z-index:1000}
 .input-box{display:flex;align-items:center;background:#121212;border-radius:8px;padding:10px;transition:all 0.3s ease;width:100%}
 .button-container{display:flex;justify-content:center;gap:15px}
 .high-score{width:100%}
@@ -65,10 +70,9 @@ button{font-size:1rem;padding:8px 16px}
   <div class="container">
     <header>
       <h1>Badges</h1>
-      <p>Enter values for each field and click generate</p>
+
       <div class="warning-box">
-        <p>Insert values that you want in Subway Surf 🎮</p>
-        <p class="warning"><b>⚠️ Please always backup all gameplay data.</b></p>
+        <p class="warning"><b>⚠️ Don't forget to backup your gameplay data!</b></p>
       </div>
       <div class="info-box">
         <p>📁 Put this file in Android/data/com.kiloo.subwaysurf/files/profile/</p>
@@ -76,8 +80,9 @@ button{font-size:1rem;padding:8px 16px}
     </header>
     
     <div class="currency-panel">
-      <!-- High Score (Full width) -->
+      <p>Enter values and click generate</p>
       <div class="input-group high-score">
+        <img src="img/bronze.png" alt="Bronze">
         <label for="highScore">High Score:</label>
         <input id="highScore" name="highScore" type="number" min="1" max="2147483647" placeholder="High Score" required oninput="enableSubmit()">
       </div>
@@ -123,6 +128,9 @@ button{font-size:1rem;padding:8px 16px}
         <button id="copyButton" type="button" onclick="copyJSON()">Copy</button>
         <button id="downloadButton" type="button" onclick="downloadJSON()">Download File</button>
       </div>
+
+      <p>File Name: badge.json</p>
+
 
       <textarea id="jsonOutput" readonly placeholder="Generated JSON will appear here..."></textarea>
     </div>
