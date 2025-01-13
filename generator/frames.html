@@ -18,13 +18,13 @@
 
     header {
       text-align: center;
-      margin-top: 20px;
       margin-bottom: 20px;
     }
 
     header h1 {
-      font-size: 2rem;
+      font-size: 3rem;
       color: #00ffcc;
+      text-shadow: 0px 0px 15px #00ffcc;
     }
 
     header p {
@@ -32,26 +32,61 @@
       color: #aaaaaa;
     }
 
-    /* Input Group Styles */
-    .input-group {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
+    .warning-box {
+      background: rgba(245, 158, 11, 0.1);
+      border: 1px solid #f59e0b;
+      border-radius: 0.5rem;
+      margin: 1rem 0;
+      padding: 1rem;
     }
 
-    .input-group label {
+    .info-box {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid #10b981;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    /* Frames Panel Layout */
+    .frames-panel {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: 0 auto;
+      max-width: 600px;
+    }
+
+    .frame-item {
+      display: flex;
+      align-items: center;
+      background: #121212;
+      border: 1px solid #333333;
+      border-radius: 8px;
+      padding: 10px;
+      transition: all 0.3s ease;
+      width: calc(50% - 10px); /* 50% width with spacing */
+      box-sizing: border-box;
+    }
+
+    .frame-item label {
       display: flex;
       align-items: center;
       font-size: 1rem;
       color: #ffffff;
       cursor: pointer;
+      width: 100%;
     }
 
-    .input-group input {
+    .frame-item input[type="checkbox"] {
       margin-right: 10px;
+      width: 20px;
+      height: 20px;
     }
 
-    .input-group img {
+    .frame-item img {
       width: 50px;
       height: 50px;
       border-radius: 5px;
@@ -59,6 +94,13 @@
     }
 
     /* Button Styles */
+    .button-group {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
     button {
       padding: 10px 20px;
       font-size: 1.2rem;
@@ -68,7 +110,6 @@
       border-radius: 6px;
       cursor: pointer;
       transition: background-color 0.3s ease, transform 0.3s ease;
-      margin-top: 20px;
     }
 
     button:hover {
@@ -80,24 +121,53 @@
       transform: scale(0.95);
     }
 
-    /* JSON Output Textarea */
     textarea {
-      width: 100%;
-      height: 200px;
-      margin-top: 20px;
-      padding: 15px;
-      background-color: #1f1f1f;
-      color: #00ffcc;
-      border: none;
-      border-radius: 6px;
-      font-family: monospace;
+      width: 90%;
+      height: 150px;
+      background: #121212;
+      border: 1px solid #333333;
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 10px;
       font-size: 1rem;
-      overflow-y: auto;
+      resize: none;
+      display: none; /* Initially hidden */
+      margin: 20px auto;
+    }
+
+    textarea::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    textarea::-webkit-scrollbar-track {
+      background: #000000;
+    }
+
+    textarea::-webkit-scrollbar-thumb {
+      background: #00ffcc;
+      border-radius: 6px;
+    }
+
+    textarea::-webkit-scrollbar-thumb:hover {
+      background: #00ffcc;
+    }
+
+    /* Notification Styles */
+    .notification {
+      display: none;
+      margin-top: 10px;
+      font-size: 1rem;
+      color: #10b981;
+      text-align: center;
     }
 
     /* Responsive Styles */
     @media (max-width: 768px) {
-      .input-group img {
+      .frame-item {
+        width: calc(50% - 8px); /* Adjust for smaller gaps */
+      }
+
+      .frame-item img {
         width: 40px;
         height: 40px;
       }
@@ -109,6 +179,10 @@
     }
 
     @media (max-width: 480px) {
+      .frame-item {
+        width: 100%; /* Stack items on smaller screens */
+      }
+
       header h1 {
         font-size: 1.5rem;
       }
@@ -117,7 +191,7 @@
         font-size: 0.9rem;
       }
 
-      .input-group img {
+      .frame-item img {
         width: 35px;
         height: 35px;
       }
@@ -127,26 +201,6 @@
         padding: 8px 12px;
       }
     }
-
-    .currency-panel {
-    background-color: #1a1a1a;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 20px 0;
-    width: 100%;
-    max-width: 600px;
-    box-shadow: 0px 0px 15px rgba(0, 255, 204, 0.3);
-}
-
-.currency-item {
-    display: flex;
-    align-items: center;
-    background: #121212;
-    border: 1px solid #333333;
-    border-radius: 8px;
-    padding: 10px;
-    transition: all 0.3s ease;
-}
   </style>
 </head>
 
@@ -154,56 +208,57 @@
   <header>
     <h1>Frames</h1>
     <p>Select frames and click generate</p>
+    <div class="warning-box">
+      <p>Insert values that you want in Subway Surf 🎮</p>
+      <p class="warning"><b>⚠️ Please always backup all gameplay data.</b></p>
+    </div>
+    <div class="info-box">
+      <p>📁 Put this file in Android/data/com.kiloo.subwaysurf/files/profile/</p>
+    </div>
   </header>
-  <div class="currency-panel">
 
-    <div class="currency-item">
-  <div class="input-group">
-    <label>
-      <input type="checkbox" id="default_frame" name="frames" value="default_frame">
-      <img src="img/Defaultframe.webp" alt="Default Frame">
-      Default Frame
-    </label>
-  </div>
-  </div>
-  <div class="currency-item">
-  <div class="input-group">
-    <label>
-      <input type="checkbox" id="summer_frame" name="frames" value="summer_frame">
-      <img src="img/Summer2024frame.webp" alt="Summer Frame">
-      Summer Frame
-    </label>
-  </div>
-  </div>
-  <div class="currency-item">
-  <div class="input-group">
-    <label>
-      <input type="checkbox" id="birthday2024_frame" name="frames" value="birthday2024_frame">
-      <img src="img/Birthday2024frame.webp" alt="Birthday 2024 Frame">
-      Birthday 2024 Frame
-    </label>
-  </div>
-  </div>
-  <div class="currency-item">
-  <div class="input-group">
-    <label>
-      <input type="checkbox" id="hollywood_frame" name="frames" value="hollywood_frame">
-      <img src="img/Hollywood2024frame.webp" alt="Hollywood Frame">
-      Hollywood Frame
-    </label>
-  </div>
-  </div>
+  <!-- Frame Selection Section -->
+  <div class="frames-panel">
+    <div class="frame-item">
+      <label>
+        <input type="checkbox" id="default_frame" name="frames" value="default_frame">
+        <img src="img/Defaultframe.webp" alt="Default Frame">
+        Default Frame
+      </label>
+    </div>
+    <div class="frame-item">
+      <label>
+        <input type="checkbox" id="summer_frame" name="frames" value="summer_frame">
+        <img src="img/Summer2024frame.webp" alt="Summer Frame">
+        Summer Frame
+      </label>
+    </div>
+    <div class="frame-item">
+      <label>
+        <input type="checkbox" id="birthday2024_frame" name="frames" value="birthday2024_frame">
+        <img src="img/Birthday2024frame.webp" alt="Birthday 2024 Frame">
+        Birthday 2024 Frame
+      </label>
+    </div>
+    <div class="frame-item">
+      <label>
+        <input type="checkbox" id="hollywood_frame" name="frames" value="hollywood_frame">
+        <img src="img/Hollywood2024frame.webp" alt="Hollywood Frame">
+        Hollywood Frame
+      </label>
+    </div>
   </div>
 
-
+  <!-- Action Buttons -->
   <div class="button-group">
-    <button type="button" onclick="generateRandomNumbers()" class="glow-button">Generate Random</button>
-    <button type="button" onclick="generateJSON()" class="glow-button">Submit</button>
-    <button type="button" onclick="copyJSON()" id="copyButton" class="glow-button" disabled>Copy</button>
-    <button type="button" onclick="downloadJSON()" id="downloadButton" class="glow-button" disabled>Download File</button>
+    <button type="button" onclick="generateJSON()">Submit</button>
+    <button type="button" onclick="copyJSON()" id="copyButton" disabled>Copy</button>
+    <button type="button" onclick="downloadJSON()" id="downloadButton" disabled>Download File</button>
   </div>
 
+  <!-- JSON Output -->
   <textarea id="jsonOutput" readonly placeholder="Generated JSON will appear here..."></textarea>
+  <div class="notification" id="copyNotification">JSON copied to clipboard!</div>
 
   <script>
     function generateJSON() {
@@ -226,7 +281,33 @@
         })
       };
 
-      document.getElementById('jsonOutput').value = JSON.stringify(json, null, 2);
+      const output = document.getElementById('jsonOutput');
+      output.value = JSON.stringify(json, null, 2);
+      output.style.display = 'block'; // Show textarea
+
+      document.getElementById('copyButton').disabled = false;
+      document.getElementById('downloadButton').disabled = false;
+    }
+
+    function copyJSON() {
+      const jsonText = document.getElementById('jsonOutput');
+      jsonText.select();
+      document.execCommand('copy');
+
+      const notification = document.getElementById('copyNotification');
+      notification.style.display = 'block';
+      setTimeout(() => {
+        notification.style.display = 'none';
+      }, 2000);
+    }
+
+    function downloadJSON() {
+      const jsonText = document.getElementById('jsonOutput').value;
+      const blob = new Blob([jsonText], { type: 'application/json' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'frames_data.json';
+      link.click();
     }
   </script>
 </body>
