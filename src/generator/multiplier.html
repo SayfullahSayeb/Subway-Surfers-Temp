@@ -139,6 +139,16 @@
         }
 
         .output::-webkit-scrollbar { width: 12px; } .output::-webkit-scrollbar-track { background: #000000; } .output::-webkit-scrollbar-thumb { background: #00ffcc; border-radius: 8px; } .output::-webkit-scrollbar-thumb:hover { background: #00ffcc; }
+
+
+        input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
     </style>
 </head>
 
@@ -171,7 +181,10 @@
         <!-- Error message and output -->
         <div id="error" class="error" style="display:none;">Value can't be higher than 30.</div>
         <div id="output" class="output"></div>
+        <p>File Name: toprun.json</p>
+
     </div>
+
 
     <div id="copyNotification" class="notification">JSON copied to clipboard!</div>
 

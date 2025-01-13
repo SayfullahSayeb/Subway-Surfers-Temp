@@ -161,6 +161,15 @@
       box-shadow: 0px 0px 15px #00ffcc;
       z-index: 1000;
     }
+
+    input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
   </style>
 </head>
 
@@ -176,9 +185,9 @@
       </div>
     </header>
 
+    <label for="currentScore">Enter TopRun score and click generate</label>
     <div class="input-group">
-      <label for="currentScore">Enter TopRun score and click generate</label>
-      <input id="currentScore" name="currentScore" type="number" min="1" required oninput="enableSubmit()">
+      <input id="currentScore" name="currentScore" placeholder="Enter score" type="number" min="1" required oninput="enableSubmit()">
     </div>
 
     <!-- Buttons -->
@@ -186,7 +195,7 @@
       <button id="generateRandomButton" type="button" onclick="generateRandomScore()">Generate Random</button>
       <button id="submitButton" type="button" onclick="generateJSON()" disabled>Submit</button>
       <button id="copyButton" type="button" onclick="copyJSON()">Copy</button>
-      <button id="downloadButton" type="button" onclick="downloadJSON()">Download File</button>
+      <button id="downloadButton" type="button" onclick="downloadJSON()">Download</button>
     </div>
 
     <p>File Name: toprun.json</p>

@@ -63,6 +63,17 @@ header h1{font-size:2rem}
 .input-group input{font-size:0.9rem;padding:8px}
 button{font-size:1rem;padding:8px 16px}
 }
+
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
   </style>
 </head>
 
@@ -82,7 +93,7 @@ button{font-size:1rem;padding:8px 16px}
     <div class="currency-panel">
       <p>Enter values and click generate</p>
       <div class="input-group high-score">
-        <img src="img/bronze.png" alt="Bronze">
+        <img src="img/champ.png" alt="Bronze">
         <label for="highScore">High Score:</label>
         <input id="highScore" name="highScore" type="number" min="1" max="2147483647" placeholder="High Score" required oninput="enableSubmit()">
       </div>
@@ -126,7 +137,7 @@ button{font-size:1rem;padding:8px 16px}
         <button type="button" onclick="generateRandomValues()">Generate Random</button>
         <button id="submitButton" type="button" onclick="generateJSON()" disabled>Submit</button>
         <button id="copyButton" type="button" onclick="copyJSON()">Copy</button>
-        <button id="downloadButton" type="button" onclick="downloadJSON()">Download File</button>
+        <button id="downloadButton" type="button" onclick="downloadJSON()">Download</button>
       </div>
 
       <p>File Name: badge.json</p>
