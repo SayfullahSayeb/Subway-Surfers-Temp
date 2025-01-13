@@ -5,122 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JSON File Generator</title>
     <style>
-        :root {
-            --dark-bg: #121212;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #000;
-            color: #fff;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column; /* Stacks .warning-box and .info-box vertically */
-            align-items: center;
-            gap: 20px;
-            padding: 2rem;
-            background: var(--dark-bg);
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(176,38,255,0.2);
-            backdrop-filter: blur(10px);
-            position: relative;
-            z-index: 1;
-        }
-
-        .box-container {
-            display: flex;
-            justify-content: center; /* Center the boxes horizontally */
-            gap: 20px; /* Spacing between the boxes */
-            flex-wrap: wrap; /* Allows wrapping if the screen is too small */
-            width: 100%; /* Ensures it spans the full width of the container */
-        }
-
-        .warning-box{background:rgba(245,158,11,0.1);border:1px solid #f59e0b;border-radius:0.5rem; text-align: center;}
-        .info-box{background:rgba(16,185,129,0.1);border:1px solid #10b981;border-radius:0.5rem;padding:0.5rem;margin:1rem 0;text-align:center}
-
-        .box {
-            background-color: #1f1f1f;
-            border-radius: 10px;
-            padding: 25px;
-            box-shadow: 0 0 10px rgba(0, 255, 204, 0.3);
-            text-align: center;
-            transition: all 0.3s ease;
-            width: 250px;
-            word-wrap: break-word;
-        }
-
-        .box:hover {
-            box-shadow: 0 0 20px rgba(0, 255, 204, 0.6);
-            transform: scale(1.05);
-        }
-
-        h1 {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: #00ffcc;
-            margin-bottom: 10px;
-        }
-
-        p {
-            font-size: 1rem;
-            color: #ffffff;
-            margin-bottom: 20px;
-        }
-
-        .box-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .box-buttons button {
-            background-color: #00ffcc;
-            color: #000;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-        }
-
-        .box-buttons button:hover {
-            background-color: #009977;
-            transform: scale(1.05);
-        }
-
-        .box-buttons button:active {
-            transform: scale(0.95);
-        }
-
-        .notification {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #00ffcc;
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 5px;
-            font-size: 1rem;
-            box-shadow: 0px 0px 10px rgba(0, 255, 204, 0.6);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .notification.show {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .notification.error {
-            background-color: #f59e0b;
-            color: #000;
-        }
+:root{--dark-bg:#121212}
+body{font-family:Arial,sans-serif;margin:0;padding:0;background-color:#000;color:#fff}
+.container{display:flex;flex-direction:column;align-items:center;gap:20px;padding:2rem;background:var(--dark-bg);border-radius:20px;box-shadow:0 0 20px rgba(176,38,255,0.2);backdrop-filter:blur(10px);position:relative;z-index:1}
+.box-container{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;width:100%}
+.warning-box{background:rgba(245,158,11,0.1);border:1px solid #f59e0b;border-radius:0.5rem;text-align:center}
+.info-box{background:rgba(16,185,129,0.1);border:1px solid #10b981;border-radius:0.5rem;padding:0.5rem;margin:1rem 0;text-align:center}
+.box{background-color:#1f1f1f;border-radius:10px;padding:25px;box-shadow:0 0 10px rgba(0,255,204,0.3);text-align:center;transition:all 0.3s ease;width:250px;word-wrap:break-word}
+.box:hover{box-shadow:0 0 20px rgba(0,255,204,0.6);transform:scale(1.05)}
+h1{font-size:1.8rem;font-weight:bold;color:#00ffcc;margin-bottom:10px}
+p{font-size:1rem;color:#ffffff;margin-bottom:20px}
+.box-buttons{display:flex;justify-content:center;gap:15px}
+.box-buttons button{background-color:#00ffcc;color:#000;border:none;padding:10px 20px;border-radius:5px;font-size:1rem;cursor:pointer;transition:background-color 0.3s ease,transform 0.3s ease}
+.box-buttons button:hover{background-color:#009977;transform:scale(1.05)}
+.box-buttons button:active{transform:scale(0.95)}
+.notification{position:fixed;top:20px;right:20px;background-color:#00ffcc;color:#000;padding:10px 20px;border-radius:5px;font-size:1rem;box-shadow:0px 0px 10px rgba(0,255,204,0.6);opacity:0;visibility:hidden;transition:opacity 0.3s ease,visibility 0.3s ease}
+.notification.show{opacity:1;visibility:visible}
+.notification.error{background-color:#f59e0b;color:#000}
     </style>
 </head>
 
@@ -162,7 +63,10 @@
                 </div>
             </div>
         </div>
+        <p>Last Update: 13 Jan 2025</p>
     </div>
+
+
 
     <div id="notification" class="notification"></div>
 
