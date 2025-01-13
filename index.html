@@ -2,52 +2,213 @@
 <html lang="en">
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="subway.jpg" type="image/jpeg">
     <title>SUBWAY SURF</title>
-
     <style>
-        :root{--neon-purple:#b026ff;--neon-blue:#4d4dff;--neon-orange:#ff6b21;--dark-bg:rgba(16,16,24,0.95)}
-body{margin:0;padding:0;background:linear-gradient(45deg,#000000,#1a1a2e);font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;color:white;min-height:100vh;overflow-x:hidden;display:flex;flex-direction:column;justify-content:center}
-.header{text-align:center;padding:2rem;position:relative}
-.logo{width:200px;height:auto;margin-bottom:1rem;filter:drop-shadow(0 0 10px var(--neon-orange))}
-.title{font-family:'Bungee',cursive;text-align:center;font-size:3rem;margin:0;background:linear-gradient(to right,var(--neon-orange),var(--neon-purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 20px rgba(255,107,33,0.5)}
-.subtitle{font-size:1rem;color:#a0a0a0;margin-top:0.5rem;text-align:center}
-.container{max-width:1200px;margin:2rem auto;padding:2rem;background:var(--dark-bg);border-radius:20px;box-shadow:0 0 20px rgba(176,38,255,0.2);backdrop-filter:blur(10px);position:relative;z-index:1}
-.tabs{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2rem;justify-content:center}
-.tab{padding:0.8rem 1.5rem;background:transparent;border:2px solid var(--neon-purple);color:white;border-radius:50px;cursor:pointer;transition:all 0.3s ease;font-size:1rem;text-transform:uppercase;letter-spacing:1.5px;position:relative;overflow:hidden;font-family:'Bungee',cursive}
-.tab:hover{background:var(--neon-purple);box-shadow:0 0 20px var(--neon-purple);transform:translateY(-2px)}
-.tab.active{background:var(--neon-purple);box-shadow:0 0 30px var(--neon-purple)}
-.content{background:rgba(0,0,0,0.5);padding:2rem;border-radius:15px;min-height:300px;border:1px solid var(--neon-blue);animation:glow 2s infinite alternate;width:90%;margin:0 auto}
-.section-content{animation:fadeIn 0.5s ease-out}
-.glow-text{font-family:'Bungee',cursive;color:var(--neon-orange);text-shadow:0 0 10px var(--neon-orange);margin-bottom:1.5rem}
-@keyframes glow{from{box-shadow:0 0 10px var(--neon-blue)}
-to{box-shadow:0 0 20px var(--neon-purple)}
-}
-@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}
-to{opacity:1;transform:translateY(0)}
-}
-@media screen and (max-width:768px){
-.title{font-size:2.5rem}
-.subtitle{font-size:0.9rem}
-.tabs{gap:0.5rem}
-.tab{font-size:0.9rem;padding:0.7rem 1.2rem}
-.content{padding:1.5rem;min-height:250px}
-}
-@media screen and (max-width:480px){
-.title{font-size:2rem}
-.subtitle{font-size:0.8rem}
-.tabs{flex-wrap:wrap;gap:0.3rem}
-.tab{font-size:0.8rem;padding:0.5rem 1rem}
-.content{padding:1rem;min-height:200px}
-}
+        :root {
+            --neon-purple: #b026ff;
+            --neon-blue: #4d4dff;
+            --neon-orange: #ff6b21;
+            --dark-bg: rgba(16, 16, 24, 0.95);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #000000, #1a1a2e);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px var(--neon-orange));
+        }
+
+        .title {
+            font-family: 'Bungee', cursive;
+            text-align: center;
+            font-size: 3rem;
+            margin: 0;
+            background: linear-gradient(to right, var(--neon-orange), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 107, 33, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #ffffff;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: var(--dark-bg);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(176, 38, 255, 0.2);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .tab {
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 2px solid var(--neon-purple);
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Bungee', cursive;
+        }
+
+        .tab:hover {
+            background: var(--neon-purple);
+            box-shadow: 0 0 20px var(--neon-purple);
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            background: var(--neon-purple);
+            box-shadow: 0 0 30px var(--neon-purple);
+        }
+
+        .content {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2rem;
+            border-radius: 15px;
+            min-height: 300px;
+            border: 1px solid var(--neon-blue);
+            animation: glow 2s infinite alternate;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 1rem;
+            background: #121212;
+            color: #ffffff;
+            font-size: 0.9rem;
+            border-top: 1px solid #333333;
+        }
+
+        .footer a {
+            color: var(--neon-orange);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--neon-purple);
+        }
+
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px var(--neon-blue);
+            }
+            to {
+                box-shadow: 0 0 20px var(--neon-purple);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+            }
+
+            .tabs {
+                gap: 0.5rem;
+            }
+
+            .tab {
+                font-size: 0.9rem;
+                padding: 0.7rem 1.2rem;
+            }
+
+            .content {
+                padding: 1.5rem;
+                min-height: 250px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 0.8rem;
+            }
+
+            .tabs {
+                flex-wrap: wrap;
+                gap: 0.3rem;
+            }
+
+            .tab {
+                font-size: 0.8rem;
+                padding: 0.5rem 1rem;
+            }
+
+            .content {
+                padding: 1rem;
+                min-height: 200px;
+            }
+        }
     </style>
 </head>
 <body>
     <h1 class="title">SUBWAY SURF</h1>
-    <p class="subtitle">Earn coins, keys and more for free in Subway Surfers.   </p>
+    <p class="subtitle">Earn coins, keys and more for free in Subway Surfers.</p>
     <div class="tabs">
         <div class="tab" data-file="home.html">Home</div>
         <div class="tab" data-file="generator/wallet.html">Wallet</div>
@@ -61,51 +222,53 @@ to{opacity:1;transform:translateY(0)}
     <div class="content">
         <!-- Content will be loaded here -->
     </div>
-
+    <footer class="footer">
+        Made with ❤️ by Sayfullah | 
+        <a href="https://github.com/ssayeb7/SubwaySurf-Temp" target="_blank">GitHub</a>
+    </footer>
     <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const tabs = document.querySelectorAll('.tab');
-    const contentDiv = document.querySelector('.content');
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab');
+            const contentDiv = document.querySelector('.content');
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            // Remove active class from all tabs
-            tabs.forEach(t => t.classList.remove('active'));
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
 
-            // Add active class to the clicked tab
-            tab.classList.add('active');
+                    // Add active class to the clicked tab
+                    tab.classList.add('active');
 
-            // Fetch and display the content for the clicked tab
-            const file = tab.getAttribute('data-file');
-            fetch(file)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    contentDiv.innerHTML = data;
+                    // Fetch and display the content for the clicked tab
+                    const file = tab.getAttribute('data-file');
+                    fetch(file)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok');
+                            }
+                            return response.text();
+                        })
+                        .then(data => {
+                            contentDiv.innerHTML = data;
 
-                    // Execute any inline scripts in the loaded content
-                    const scripts = contentDiv.querySelectorAll('script');
-                    scripts.forEach(script => {
-                        const newScript = document.createElement('script');
-                        newScript.textContent = script.textContent; // Copy inline script content
-                        document.body.appendChild(newScript); // Append to the document to execute
-                        document.body.removeChild(newScript); // Cleanup after execution
-                    });
-                })
-                .catch(error => {
-                    contentDiv.innerHTML = `<p>Error loading content: ${error.message}</p>`;
+                            // Execute any inline scripts in the loaded content
+                            const scripts = contentDiv.querySelectorAll('script');
+                            scripts.forEach(script => {
+                                const newScript = document.createElement('script');
+                                newScript.textContent = script.textContent; // Copy inline script content
+                                document.body.appendChild(newScript); // Append to the document to execute
+                                document.body.removeChild(newScript); // Cleanup after execution
+                            });
+                        })
+                        .catch(error => {
+                            contentDiv.innerHTML = `<p>Error loading content: ${error.message}</p>`;
+                        });
                 });
+            });
+
+            // Load the first tab's content by default
+            tabs[0].click();
         });
-    });
-
-    // Load the first tab's content by default
-    tabs[0].click();
-});
-
     </script>
 </body>
 </html>
