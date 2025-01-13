@@ -3,136 +3,119 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Button</title>
     <style>
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #121212;
-    color: #ffffff;
-    line-height: 1.6;
-}
-
-/* Container */
-.container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #1f1f1f;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 255, 204, 0.3);
-    text-align: center;
-}
-
-/* Header */
-.container h1 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    color: #00ffcc;
-}
-
-.container p {
-    font-size: 1rem;
-    margin-bottom: 15px;
-    color: #aaaaaa;
-}
-
-/* Info Box */
-.info-box {
-    padding: 15px;
-    background-color: #333;
-    border: 1px solid #00ffcc;
-    border-radius: 6px;
-    margin-bottom: 20px;
-}
-
-.info-box p {
-    margin: 0;
-    font-size: 1rem;
-    color: #00ffcc;
-}
-
-/* List Styles */
-.three-column-list {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    text-align: left;
-    margin-bottom: 20px;
-}
-
-.three-column-list li {
-    background-color: #333;
-    border: 1px solid #444;
-    padding: 8px;
-    border-radius: 6px;
-    font-size: 1rem;
-    color: #aaaaaa;
-}
-
-/* Download Button */
-.download-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    color: #000;
-    background-color: #00ffcc;
-    text-decoration: none;
-    border-radius: 6px;
-    box-shadow: 0 4px 6px rgba(0, 255, 204, 0.3);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.download-btn:hover {
-    background-color: #009977;
-    box-shadow: 0 6px 8px rgba(0, 255, 204, 0.5);
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    .three-column-list {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .download-btn {
-        font-size: 1rem;
-        padding: 8px 16px;
-    }
-}
-
-@media (max-width: 480px) {
-    .three-column-list {
-        grid-template-columns: 1fr;
-    }
-
-    .container h1 {
-        font-size: 1.5rem;
-    }
-
-    .info-box p {
-        font-size: 0.9rem;
-    }
-
-    .download-btn {
-        font-size: 0.9rem;
-        padding: 8px 12px;
-    }
-}
-
-
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+        .warning-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid #f59e0b;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1f1f1f;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 255, 204, 0.3);
+            text-align: center;
+        }
+        .container h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #00ffcc;
+        }
+        .container p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+        .info-box {
+            padding: 15px;
+            background-color: #333;
+            border: 1px solid #00ffcc;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        .info-box p {
+            margin: 0;
+            font-size: 1rem;
+            color: #00ffcc;
+        }
+        .three-column-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0; /* Align it properly inside the container */
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            text-align: left;
+        }
+        .three-column-list li {
+            background-color: #333;
+            border: 1px solid #444;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 1rem;
+            color: #ffffff;
+        }
+        .download-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            color: #000;
+            background-color: #00ffcc;
+            text-decoration: none;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0, 255, 204, 0.3);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .download-btn:hover {
+            background-color: #009977;
+            box-shadow: 0 6px 8px rgba(0, 255, 204, 0.5);
+        }
+        @media (max-width: 768px) {
+            .three-column-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .download-btn {
+                font-size: 1rem;
+                padding: 8px 16px;
+            }
+        }
+        @media (max-width: 480px) {
+            .three-column-list {
+                grid-template-columns: 1fr;
+            }
+            .container h1 {
+                font-size: 1.5rem;
+            }
+            .info-box p {
+                font-size: 0.9rem;
+            }
+            .download-btn {
+                font-size: 0.9rem;
+                padding: 8px 12px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>SubwayBooster</h1>
-        <p>Please always backup all gameplay data.</p>
+        <h1>Subway Surf Booster</h1>
+        <div class="warning-box">
+            <p class="warning"><b>⚠️ Don't forget to backup your gameplay data!</b></p>
+        </div>
         <div class="info-box">
-            <p>📁 Download the file and extract in Android/data/com.kiloo.subwaysurf/files/profile/</p>
-          </div>
+            <p>📁 Put this file in Android/data/com.kiloo.subwaysurf/files/profile/</p>
+        </div>
         <ul class="three-column-list">
             <li>Every Character and their Outfits</li>
             <li>Every Hoverboard with every Special Ability</li>
@@ -150,10 +133,11 @@ body {
             <li>All Trophies</li>
             <li>All Achievements</li>
             <li>All Quests</li>
-            <li>All Player Profiles/Frames/Backgrounds | Destinations</li>
-          </ul>
-          <a href="https://github.com/ssayeb7/SubwaySurf-Temp/raw/main/SubwayBooster.zip" download class="download-btn">Download Now</a>
-          <p> File Credit: HerrErde</p>
+            <li>All Player Profiles/Frames/Backgrounds</li>
+            <li>All Destinations</li>
+        </ul>
+        <a href="https://github.com/ssayeb7/SubwaySurf-Temp/raw/main/SubwayBooster.zip" download class="download-btn">Download Now</a>
+        <p> File Credit: HerrErde</p>
     </div>
 </body>
 </html>
