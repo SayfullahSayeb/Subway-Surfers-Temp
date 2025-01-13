@@ -3,157 +3,150 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frame Selection</title>
   <style>
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-    color: #333;
-}
-
-/* Header */
-header {
-    text-align: center;
-    color: #fff;
-    padding: 20px 0;
-    margin-bottom: 20px;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 2rem;
-}
-
-header p {
-    margin: 5px 0 0;
-    font-size: 1rem;
-}
-
-/* Form Container */
-form {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: #374055;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Fieldset */
-fieldset {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-legend {
-    font-weight: bold;
-    font-size: 1.2rem;
-    color: #ffffff;
-}
-
-.input-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-.input-group label {
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-    cursor: pointer;
-    color: #fff;
-}
-
-.input-group img {
-    width: 40px; /* Set the size of the images */
-    margin-right: 10px;
-}
-
-.input-group input {
-    margin-right: 10px; /* Adds spacing between the checkbox and image */
-}
-
-
-/* Button */
-button {
-    display: block;
-    width: 200px;
-    margin: 20px auto;
-    padding: 10px 15px;
-    font-size: 1rem;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-/* Textarea */
-textarea {
-    width: 90%;
-    height: 200px;
-    margin: 0 auto;
-    display: block;
-    padding: 15px;
-    font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    resize: none;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-    form {
-        padding: 15px;
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #121212;
+      color: #ffffff;
+      line-height: 1.6;
     }
 
-    .input-group label {
-        font-size: 0.9rem;
+    header {
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
 
-    button {
-        width: 180px;
-        font-size: 0.9rem;
-        padding: 8px 12px;
-    }
-
-    textarea {
-        width: 100%;
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 480px) {
     header h1 {
-        font-size: 1.5rem;
+      font-size: 2rem;
+      color: #00ffcc;
     }
 
     header p {
-        font-size: 0.9rem;
+      font-size: 1rem;
+      color: #aaaaaa;
     }
 
+    /* Input Group Styles */
+    .input-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .input-group label {
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    .input-group input {
+      margin-right: 10px;
+    }
+
+    .input-group img {
+      width: 50px;
+      height: 50px;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    /* Button Styles */
     button {
-        width: 150px;
-        font-size: 0.8rem;
-        padding: 6px 10px;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      color: #000;
+      background-color: #00ffcc;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      margin-top: 20px;
     }
 
-    textarea {
-        font-size: 0.8rem;
+    button:hover {
+      background-color: #009977;
+      transform: scale(1.05);
     }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    /* JSON Output Textarea */
+    textarea {
+      width: 100%;
+      height: 200px;
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #1f1f1f;
+      color: #00ffcc;
+      border: none;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 1rem;
+      overflow-y: auto;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .input-group img {
+        width: 40px;
+        height: 40px;
+      }
+
+      button {
+        font-size: 1rem;
+        padding: 8px 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.5rem;
+      }
+
+      header p {
+        font-size: 0.9rem;
+      }
+
+      .input-group img {
+        width: 35px;
+        height: 35px;
+      }
+
+      button {
+        font-size: 0.9rem;
+        padding: 8px 12px;
+      }
+    }
+
+    .currency-panel {
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0px 0px 15px rgba(0, 255, 204, 0.3);
 }
 
+.currency-item {
+    display: flex;
+    align-items: center;
+    background: #121212;
+    border: 1px solid #333333;
+    border-radius: 8px;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
   </style>
 </head>
 
@@ -162,45 +155,54 @@ textarea {
     <h1>Frames</h1>
     <p>Select frames and click generate</p>
   </header>
+  <div class="currency-panel">
 
-  <form id="jsonForm">
-    <fieldset>
-      <legend>Available Frames</legend>
-      <div class="input-group">
-        <label>
-          <input type="checkbox" id="default_frame" name="frames" value="default_frame">
-          <img src="img/Defaultframe.webp" alt="Default Frame">
-          Default Frame
-        </label>
-      </div>
-      <div class="input-group">
-        <label>
-          <input type="checkbox" id="summer_frame" name="frames" value="summer_frame">
-          <img src="img/Summer2024frame.webp" alt="Summer Frame">
-          Summer Frame
-        </label>
-      </div>
-      <div class="input-group">
-        <label>
-          <input type="checkbox" id="birthday2024_frame" name="frames" value="birthday2024_frame">
-          <img src="img/Birthday2024frame.webp" alt="Birthday 2024 Frame">
-          Birthday 2024 Frame
-        </label>
-      </div>
-      <div class="input-group">
-        <label>
-          <input type="checkbox" id="hollywood_frame" name="frames" value="hollywood_frame">
-          <img src="img/Hollywood2024frame.webp" alt="Hollywood Frame">
-          Hollywood Frame
-        </label>
-      </div>
-    </fieldset>    
-  </form>
+    <div class="currency-item">
+  <div class="input-group">
+    <label>
+      <input type="checkbox" id="default_frame" name="frames" value="default_frame">
+      <img src="img/Defaultframe.webp" alt="Default Frame">
+      Default Frame
+    </label>
+  </div>
+  </div>
+  <div class="currency-item">
+  <div class="input-group">
+    <label>
+      <input type="checkbox" id="summer_frame" name="frames" value="summer_frame">
+      <img src="img/Summer2024frame.webp" alt="Summer Frame">
+      Summer Frame
+    </label>
+  </div>
+  </div>
+  <div class="currency-item">
+  <div class="input-group">
+    <label>
+      <input type="checkbox" id="birthday2024_frame" name="frames" value="birthday2024_frame">
+      <img src="img/Birthday2024frame.webp" alt="Birthday 2024 Frame">
+      Birthday 2024 Frame
+    </label>
+  </div>
+  </div>
+  <div class="currency-item">
+  <div class="input-group">
+    <label>
+      <input type="checkbox" id="hollywood_frame" name="frames" value="hollywood_frame">
+      <img src="img/Hollywood2024frame.webp" alt="Hollywood Frame">
+      Hollywood Frame
+    </label>
+  </div>
+  </div>
+  </div>
 
 
-  <button type="button" onclick="generateJSON()">Generate JSON</button>
+  <div class="button-group">
+    <button type="button" onclick="generateRandomNumbers()" class="glow-button">Generate Random</button>
+    <button type="button" onclick="generateJSON()" class="glow-button">Submit</button>
+    <button type="button" onclick="copyJSON()" id="copyButton" class="glow-button" disabled>Copy</button>
+    <button type="button" onclick="downloadJSON()" id="downloadButton" class="glow-button" disabled>Download File</button>
+  </div>
 
-  
   <textarea id="jsonOutput" readonly placeholder="Generated JSON will appear here..."></textarea>
 
   <script>
