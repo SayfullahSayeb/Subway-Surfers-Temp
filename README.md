@@ -24,6 +24,10 @@ Earn coins, keys, and more for free in Subway Surfers.
 This project is created and maintained by **Sayfullah**.  
 Feel free to explore, suggest improvements, or contribute via pull requests.
 
+**Idea Credit: [just-exploit](https://github.com/just-exploit/SubwayHackWEB) and [HerrErde](https://github.com/HerrErde/subway_gen)**
+
+**Decrypt API: [subwaySurfers-ezGUI](https://github.com/lea0o0oo/subwaySurfers-ezGUI)**
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
