@@ -247,13 +247,10 @@
 
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
-                    // Remove active class from all tabs
                     tabs.forEach(t => t.classList.remove('active'));
 
-                    // Add active class to the clicked tab
                     tab.classList.add('active');
 
-                    // Fetch and display the content for the clicked tab
                     const file = tab.getAttribute('data-file');
                     fetch(file)
                         .then(response => {
@@ -265,13 +262,12 @@
                         .then(data => {
                             contentDiv.innerHTML = data;
 
-                            // Execute any inline scripts in the loaded content
                             const scripts = contentDiv.querySelectorAll('script');
                             scripts.forEach(script => {
                                 const newScript = document.createElement('script');
-                                newScript.textContent = script.textContent; // Copy inline script content
-                                document.body.appendChild(newScript); // Append to the document to execute
-                                document.body.removeChild(newScript); // Cleanup after execution
+                                newScript.textContent = script.textContent;
+                                document.body.appendChild(newScript);
+                                document.body.removeChild(newScript);
                             });
                         })
                         .catch(error => {
