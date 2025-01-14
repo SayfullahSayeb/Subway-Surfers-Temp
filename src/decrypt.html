@@ -247,11 +247,14 @@
             <h3>Result</h3>
             <textarea id="resultData" rows="4" readonly></textarea>
         </div>
+
+        <p> Credit: Noobgamer0111, moddedmcplayer</p>
         <div class="export-buttons">
             <button class="popup-button" onclick="copyToClipboard()">Copy</button>
             <button class="popup-button" onclick="showSavePopup()">Save File</button>
         </div>
     </div>
+    
     <div class="custom-alert" id="customAlert">
         <p id="alertMessage">Alert message here</p>
         <button onclick="closeAlert()">OK</button>
@@ -263,6 +266,8 @@
         <input type="text" id="fileNameInput" class="save-input" placeholder="Enter file name" />
         <button class="popup-button" onclick="saveToFile()">Save</button>
         <button class="popup-button" onclick="closePopup()">Cancel</button>
+
+
     </div>
     <script>
         const API_URL = "https://ssd-server.vercel.app";
