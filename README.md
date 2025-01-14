@@ -18,9 +18,6 @@ Earn coins, keys, and more for free in Subway Surfers.
 
 ![Screenshot](preview/preview1.jpg) 
 ![Screenshot](preview/preview2.jpg)  
-![Screenshot](preview/preview4.jpg)  
-![Screenshot](preview/preview5.jpg)  
-![Screenshot](preview/preview6.jpg)  
 
 ## About
 
