@@ -13,5 +13,8 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Make deploy.sh executable
+      run: chmod +x ./deploy.sh
+
     - name: Run deploy script
       run: ./deploy.sh
