@@ -6,11 +6,11 @@ Earn coins, keys, and more for free in Subway Surfers.
 
 ## Features
 
-- **Interactive Tabs**: Navigate between different tools with ease.
-- **Wallet Management**: Manage and simulate your in-game wallet.
-- **Unlock All Items**: Simulate unlocking all in-game items and frames.
+- **Wallet Management**: Manage your in-game wallet.
+- **Unlock All Items**: Unlock all in-game items and frames.
 - **Multiplier Tool**: Boost your in-game multipliers.
-- **Badges and Top Runs**: Access tools to enhance your performance and achievements.
+- **Badges and Top Runs**: Tempering High Score and achievements.
+- **Decrypt JSON**: Decrypt endgame JSON data.
 - **All-in-One**: Downloaded the Zip file and extract its contents into the game folder.
 
 
