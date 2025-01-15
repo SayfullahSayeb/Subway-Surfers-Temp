@@ -11,7 +11,7 @@ Earn coins, keys, and more for free in Subway Surfers.
 - **Multiplier Tool**: Boost your in-game multipliers.
 - **Badges and Top Runs**: Tempering High Score and achievements.
 - **Decrypt JSON**: Decrypt in-game JSON data.
-- **All-in-One**: Downloaded the Zip file and extract its contents into the game folder.
+- **All-in-One**: Download the Zip file and extract its contents into the game folder.
 
 
 ## Preview
