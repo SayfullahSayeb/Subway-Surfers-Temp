@@ -1,4 +1,4 @@
-# SubwaySurf-Temp
+# Subway Surf Temp
 
 Unlock Unlimited Coins, Keys, Characters, Hoverboards, Portraits, and more for free in Subway Surfers.
 
