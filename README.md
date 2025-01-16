@@ -1,6 +1,6 @@
 # SubwaySurf-Temp
 
-Earn coins, keys, and more for free in Subway Surfers.
+Unlock Unlimited Coins, Keys, Characters, Hoverboards, Portraits, and more for free in Subway Surfers.
 
 ---
 
