@@ -6,7 +6,7 @@ Earn coins, keys, and more for free in Subway Surfers.
 
 ## ⚠️ Disclaimer
 
-I do not promote or encourage hacking, cheating, or illegal activities. This project is for educational purposes only. Support fair gameplay and developers through in-game purchases. Use of this project may violate game terms of service and result in penalties, including account bans. I am not responsible for misuse and disclaim any liability for consequences.
+I do not support cheating or illegal activities. This project is for educational purposes only. Support fair gameplay and developers through in-game purchases. Use of this project may violate game terms of service. I am not responsible for misuse and disclaim any liability for consequences.
 
 ## Features
 
