@@ -6,7 +6,7 @@ Unlock Unlimited Coins, Keys, Characters, Hoverboards, Portraits, and more for f
 
 ## ⚠️ Disclaimer
 
-I do not support cheating or illegal activities. This project is for educational purposes only. Support fair gameplay and developers through in-game purchases. Use of this project may violate game terms of service. I am not responsible for misuse and disclaim any liability for consequences.
+I do not support cheating or illegal activities. This project is for educational and personal use only. Support fair gameplay and developers through in-game purchases. Use of this project may violate game terms of service. I am not responsible for misuse and disclaim any liability for consequences.
 
 ## Features
 
