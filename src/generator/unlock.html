@@ -191,62 +191,81 @@
 
     <div id="notification" class="notification"></div>
 
-    <script>
-        const jsonPaths = [
-            'json/characters_inventory.json',
-            'json/boards_inventory.json',
-            'json/profile_portrait.json'
-        ];
+<script>
+// At the top of your script in unlock.html
+const getBasePath = () => {
+    const currentPath = window.location.pathname;
+    // Check if we're loaded in a tab or directly
+    return currentPath.includes('/generator/') ? '../' : '/src/';
+};
 
-        const boxNotifications = [
-            "All Characters code is copied",
-            "All Hoverboards code is copied",
-            "All Portraits code is copied"
-        ];
+const boxConfig = {
+    paths: ['characters_inventory', 'boards_inventory', 'profile_portrait']
+        .map(name => `${getBasePath()}json/${name}.json`),
+    notifications: ['Characters', 'Hoverboards', 'Portraits']
+        .map(type => `All ${type} code is copied`)
+};
 
-        function showNotification(message, isError = false) {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
-            notification.className = `notification ${isError ? 'error' : ''} show`;
-            setTimeout(() => {
-                notification.className = 'notification';
-            }, 3000);
+// Add a debug log to help troubleshoot
+console.log('Current path:', window.location.pathname);
+console.log('Base path:', getBasePath());
+console.log('JSON paths:', boxConfig.paths);
+
+// Rest of your functions remain the same
+const showNotification = (message, isError = false) => {
+    const notification = document.getElementById('notification');
+    notification.textContent = message;
+    notification.className = `notification ${isError ? 'error' : ''} show`;
+    setTimeout(() => notification.className = 'notification', 3000);
+};
+
+// Common function to fetch and process JSON
+async function fetchAndProcessJSON(boxNumber) {
+    const response = await fetch(boxConfig.paths[boxNumber - 1]);
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    const data = await response.json();
+    return JSON.stringify(data, null, 2);
+}
+
+// Copy function
+async function copyBoxJSON(boxNumber) {
+    try {
+        const textToCopy = await fetchAndProcessJSON(boxNumber);
+        if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(textToCopy);
+        } else {
+            const textarea = document.createElement('textarea');
+            Object.assign(textarea.style, { position: 'fixed', opacity: '0' });
+            textarea.value = textToCopy;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
         }
+        showNotification(boxConfig.notifications[boxNumber - 1]);
+    } catch (error) {
+        console.error('Error details:', error);
+        showNotification(`Error handling Box ${boxNumber}: ${error.message}`, true);
+    }
+}
 
-        async function copyBoxJSON(boxNumber) {
-            try {
-                const response = await fetch(jsonPaths[boxNumber - 1]);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                navigator.clipboard.writeText(JSON.stringify(data, null, 2))
-                    .then(() => showNotification(boxNotifications[boxNumber - 1]))
-                    .catch(err => showNotification(`Failed to copy JSON: ${err.message}`, true));
-            } catch (error) {
-                showNotification(`Error fetching JSON for Box ${boxNumber}: ${error.message}`, true);
-            }
-        }
-
-        async function downloadBoxJSON(boxNumber) {
-            try {
-                const response = await fetch(jsonPaths[boxNumber - 1]);
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                const data = await response.json();
-                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = jsonPaths[boxNumber - 1].split('/').pop();
-                a.click();
-                URL.revokeObjectURL(url);
-                showNotification(`JSON file for Box ${boxNumber} downloaded successfully!`);
-            } catch (error) {
-                showNotification(`Error downloading JSON for Box ${boxNumber}: ${error.message}`, true);
-            }
-        }
+// Download function
+async function downloadBoxJSON(boxNumber) {
+    try {
+        const jsonString = await fetchAndProcessJSON(boxNumber);
+        const blob = new Blob([jsonString], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = boxConfig.paths[boxNumber - 1].split('/').pop();
+        a.click();
+        URL.revokeObjectURL(url);
+        showNotification(`JSON file for Box ${boxNumber} downloaded successfully!`);
+    } catch (error) {
+        console.error('Error details:', error);
+        showNotification(`Error downloading Box ${boxNumber}: ${error.message}`, true);
+    }
+}
     </script>
 </body>
 </html>
